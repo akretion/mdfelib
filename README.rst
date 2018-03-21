@@ -30,7 +30,209 @@ como instalar
 como usar
 =========
 
-.. code::
-:
-  >>> from mdfelib.v3_00 import mdfe as mdfe3
-  # TODO documentar melhor
+.. code:: python
+
+    import sys
+    from mdfelib.v3_00 import mdfe as mdfe3
+    from mdfelib.v3_00 import mdfeModalRodoviario as rodo3
+
+    ender_emit = mdfe3.TEndeEmi(
+        xLgr='Rua',
+        nro='150',
+        xBairro='Centro',
+        cMun='2305506',
+        xMun='IGUATU',
+        CEP='63500000',
+        UF='CE',
+        fone='08002755700'
+    )
+
+    emit = mdfe3.emitType(
+        CNPJ='4142966000334',
+        IE='069444013',
+        xNome='Razao Social',
+        xFant='Fantasia',
+        enderEmit=ender_emit)
+
+    carregamento_1 = mdfe3.infMunCarregaType(
+        cMunCarrega='2305506',
+        xMunCarrega='TESTE'
+    )
+
+    ide = mdfe3.ideType(
+        cUF='23',
+        tpAmb=2,
+        tpEmit=1,
+        tpTransp=None,
+        mod=1,
+        serie='1',
+        nMDF='1',
+        cMDF='00004894',
+        cDV='4',
+        modal=1,
+        dhEmi='2017-10-02T18:05:55-03:00',
+        tpEmis=1,
+        procEmi='0',
+        verProc='Odoo',
+        UFIni='CE',
+        UFFim='CE',
+        infMunCarrega=[carregamento_1],
+        infPercurso=None,
+        dhIniViagem=None,
+        indCanalVerde=None,
+    )
+
+    tot = mdfe3.totType(
+        qCTe=None,
+        qNFe='2',
+        qMDFe=None,
+        vCarga='3044.00',
+        cUnid='01',
+        qCarga='57.0000',
+    )
+
+    lista_cte = []
+    lista_nfe = []
+
+
+    nfe_1 = mdfe3.infNFeType(
+        chNFe='23180341426966004836558720000002681197872700',
+        SegCodBarra=None,
+        indReentrega=None,
+        infUnidTransp=None,
+        peri=None,
+    )
+
+    nfe_2 = mdfe3.infNFeType(
+        chNFe='23180341426966003600558720000012321410321707',
+        SegCodBarra=None,
+        indReentrega=None,
+        infUnidTransp=None,
+        peri=None,
+    )
+
+    lista_nfe.append(nfe_1)
+    lista_nfe.append(nfe_2)
+
+    infMunDescarga= mdfe3.infMunDescargaType(
+        cMunDescarga='2305506',
+        xMunDescarga='Cidade',
+        infCTe=lista_cte,
+        infNFe=lista_nfe,
+        infMDFeTransp=None,
+    )
+
+    infDoc= mdfe3.infDocType(infMunDescarga=[infMunDescarga])
+
+    condutor_1 = rodo3.condutorType(
+        xNome='Luis Felipe Mileo',
+        CPF='33333333333'
+    )
+
+    veiculo = rodo3.veicTracaoType(
+        cInt='0001',
+        placa='PMR3000',
+        RENAVAM=None,
+        tara='4250',
+        capKG='0',
+        capM3='0',
+        prop=None,
+        condutor=[condutor_1],
+        tpRod='02',
+        tpCar='02',
+        UF='CE'
+    )
+
+    rodo = rodo3.rodo(
+        infANTT=None,
+        veicTracao=veiculo,
+        veicReboque=None,
+        codAgPorto=None,
+        lacRodo=None
+    )
+
+    modal = mdfe3.infModalType(versaoModal="3.00", anytypeobjs_=rodo)
+
+    mdfe = mdfe3.infMDFeType(
+        versao="3.00", Id=None, ide=ide, emit=emit, infModal=modal,
+        infDoc=infDoc, seg=None, tot=tot, lacres=None, autXML=None,
+        infAdic=None
+    )
+
+    mdfe.export(sys.stdout, 0)
+
+    <infMDFeType versao="3.00">
+    <ide>
+        <cUF>23</cUF>
+        <tpAmb>2</tpAmb>
+        <tpEmit>1</tpEmit>
+        <mod>1</mod>
+        <serie>1</serie>
+        <nMDF>1</nMDF>
+        <cMDF>00004894</cMDF>
+        <cDV>4</cDV>
+        <modal>1</modal>
+        <dhEmi>2017-10-02T18:05:55-03:00</dhEmi>
+        <tpEmis>1</tpEmis>
+        <procEmi>0</procEmi>
+        <verProc>Odoo</verProc>
+        <UFIni>CE</UFIni>
+        <UFFim>CE</UFFim>
+        <infMunCarrega>
+            <cMunCarrega>2305506</cMunCarrega>
+            <xMunCarrega>TESTE</xMunCarrega>
+        </infMunCarrega>
+    </ide>
+    <emit>
+        <CNPJ>4142966000334</CNPJ>
+        <IE>069444013</IE>
+        <xNome>Razao Social</xNome>
+        <xFant>Fantasia</xFant>
+        <enderEmit>
+            <xLgr>Rua</xLgr>
+            <nro>150</nro>
+            <xBairro>Centro</xBairro>
+            <cMun>2305506</cMun>
+            <xMun>IGUATU</xMun>
+            <CEP>63500000</CEP>
+            <UF>CE</UF>
+            <fone>08002755700</fone>
+        </enderEmit>
+    </emit>
+    <infModal versaoModal="3.00">
+        <rodo>
+            <veicTracao>
+                <cInt>0001</cInt>
+                <placa>PMR3000</placa>
+                <tara>4250</tara>
+                <capKG>0</capKG>
+                <capM3>0</capM3>
+                <condutor>
+                    <xNome>Luis Felipe Mileo</xNome>
+                    <CPF>33333333333</CPF>
+                </condutor>
+                <tpRod>02</tpRod>
+                <tpCar>02</tpCar>
+                <UF>CE</UF>
+            </veicTracao>
+        </rodo>
+    </infModal>
+    <infDoc>
+        <infMunDescarga>
+            <cMunDescarga>2305506</cMunDescarga>
+            <xMunDescarga>Cidade</xMunDescarga>
+            <infNFe>
+                <chNFe>23180341426966004836558720000002681197872700</chNFe>
+            </infNFe>
+            <infNFe>
+                <chNFe>23180341426966003600558720000012321410321707</chNFe>
+            </infNFe>
+        </infMunDescarga>
+    </infDoc>
+    <tot>
+        <qNFe>2</qNFe>
+        <vCarga>3044.00</vCarga>
+        <cUnid>01</cUnid>
+        <qCarga>57.0000</qCarga>
+    </tot>
+    </infMDFeType>
