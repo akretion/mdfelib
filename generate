@@ -41,6 +41,7 @@ EOF
     local name=$(echo "$f" | sed 's/\.xsd//g' | sed 's/\./_/g' | sed "s/_$version//g")
     local module_name=$(echo $name | tr "/" "\n" | tail -n1)
     # generateDS -o "$gen_path/$module_name".py -s "$gen_path/$module_name"_subs.py "$f"
+    cp generatedsnamespaces.py "$gen_path"/generatedsnamespaces.py
     if [[ "$module_name" == "mdfe" ]] || [[ "$module_name" == "mdfeModalRodoviario" ]] || [[ "$module_name" == "procMDFe" ]] ; then
       generateDS --no-namespace-defs  -o "$gen_path/$module_name".py "$f"
     else
