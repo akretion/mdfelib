@@ -254,3 +254,4 @@ epub_copyright = u'2010, Dave Kuhlman'
 sys.path.append(os.path.abspath('../mdfelib/v3_00'))
 sys.path.append(os.path.abspath('../mdfelib/v3_00'))
 sys.path.append(os.path.abspath('../mdfelib/v3_00'))
+sys.path.append(os.path.abspath('../mdfelib/v3_00'))

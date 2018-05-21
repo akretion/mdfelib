@@ -2,17 +2,18 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Mon May 21 16:41:30 2018 by generateDS.py version 2.29.2.
+# Generated Mon May 21 16:44:10 2018 by generateDS.py version 2.29.2.
 # Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
+#   ('--no-namespace-defs', '')
 #   ('-o', 'mdfelib/v3_00/procMDFe.py')
 #
 # Command line arguments:
 #   schemas/v3_00/procMDFe_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS -o "mdfelib/v3_00/procMDFe.py" schemas/v3_00/procMDFe_v3.00.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/procMDFe.py" schemas/v3_00/procMDFe_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib
@@ -859,7 +860,7 @@ class TMDFe(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TMDFe', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='TMDFe', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('TMDFe')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -3618,7 +3619,7 @@ class SignatureType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='SignatureType', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='SignatureType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -3796,7 +3797,7 @@ class SignedInfoType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='SignedInfoType', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='SignedInfoType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignedInfoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -3911,7 +3912,7 @@ class ReferenceType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='ReferenceType', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='ReferenceType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('ReferenceType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -4033,7 +4034,7 @@ class TransformsType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TransformsType', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='TransformsType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('TransformsType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -4198,7 +4199,7 @@ class KeyInfoType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='KeyInfoType', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='KeyInfoType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('KeyInfoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -4366,7 +4367,7 @@ class TProtMDFe(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TProtMDFe', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='TProtMDFe', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('TProtMDFe')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -9458,7 +9459,7 @@ class infProtType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='infProtType', namespacedef_=' xmlns:ds="http://www.w3.org/2000/09/xmldsig#" ', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='infProtType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('infProtType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_

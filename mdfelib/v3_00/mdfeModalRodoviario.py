@@ -2,17 +2,18 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Mon May 21 16:41:28 2018 by generateDS.py version 2.29.2.
+# Generated Mon May 21 16:44:07 2018 by generateDS.py version 2.29.2.
 # Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
+#   ('--no-namespace-defs', '')
 #   ('-o', 'mdfelib/v3_00/mdfeModalRodoviario.py')
 #
 # Command line arguments:
 #   schemas/v3_00/mdfeModalRodoviario_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS -o "mdfelib/v3_00/mdfeModalRodoviario.py" schemas/v3_00/mdfeModalRodoviario_v3.00.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/mdfeModalRodoviario.py" schemas/v3_00/mdfeModalRodoviario_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib

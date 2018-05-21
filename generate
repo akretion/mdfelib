@@ -42,7 +42,7 @@ EOF
     local module_name=$(echo $name | tr "/" "\n" | tail -n1)
     # generateDS -o "$gen_path/$module_name".py -s "$gen_path/$module_name"_subs.py "$f"
     if [[ "$module_name" == "mdfe" ]] || [[ "$module_name" == "mdfeModalRodoviario" ]] || [[ "$module_name" == "procMDFe" ]] ; then
-      generateDS -o "$gen_path/$module_name".py "$f"
+      generateDS --no-namespace-defs  -o "$gen_path/$module_name".py "$f"
     else
       # --no-process_includes is said to be a risky option that disable validators, but probably we
       # only want them for the NFe layout. Doing this makes the lib much smaller.
