@@ -2,18 +2,18 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Thu May 31 13:45:34 2018 by generateDS.py version 2.29.2.
+# Generated Thu May 31 13:45:37 2018 by generateDS.py version 2.29.2.
 # Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
 #   ('--no-namespace-defs', '')
-#   ('-o', 'mdfelib/v3_00/consSitMDFe.py')
+#   ('-o', 'mdfelib/v3_00/eventoMDFe.py')
 #
 # Command line arguments:
-#   schemas/v3_00/consSitMDFe_v3.00.xsd
+#   schemas/v3_00/eventoMDFe_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/consSitMDFe.py" schemas/v3_00/consSitMDFe_v3.00.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/eventoMDFe.py" schemas/v3_00/eventoMDFe_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib
@@ -709,84 +709,49 @@ def _cast(typ, value):
 #
 
 
-class TConsSitMDFe(GeneratedsSuper):
-    """Tipo Pedido de Consulta da Situação Atual do MDF-e"""
+class TEvento(GeneratedsSuper):
+    """Tipo Evento"""
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, xServ=None, chMDFe=None):
+    def __init__(self, versao=None, infEvento=None, Signature=None):
         self.original_tagname_ = None
         self.versao = _cast(None, versao)
-        self.tpAmb = tpAmb
-        self.validate_TAmb(self.tpAmb)
-        self.xServ = xServ
-        self.validate_TServ(self.xServ)
-        self.chMDFe = chMDFe
-        self.validate_TChNFe(self.chMDFe)
+        self.infEvento = infEvento
+        self.Signature = Signature
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, TConsSitMDFe)
+                CurrentSubclassModule_, TEvento)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if TConsSitMDFe.subclass:
-            return TConsSitMDFe.subclass(*args_, **kwargs_)
+        if TEvento.subclass:
+            return TEvento.subclass(*args_, **kwargs_)
         else:
-            return TConsSitMDFe(*args_, **kwargs_)
+            return TEvento(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_tpAmb(self): return self.tpAmb
-    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
-    def get_xServ(self): return self.xServ
-    def set_xServ(self, xServ): self.xServ = xServ
-    def get_chMDFe(self): return self.chMDFe
-    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_infEvento(self): return self.infEvento
+    def set_infEvento(self, infEvento): self.infEvento = infEvento
+    def get_Signature(self): return self.Signature
+    def set_Signature(self, Signature): self.Signature = Signature
     def get_versao(self): return self.versao
     def set_versao(self, versao): self.versao = versao
-    def validate_TAmb(self, value):
-        # Validate type TAmb, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            value = str(value)
-            enumerations = ['1', '2']
-            enumeration_respectee = False
-            for enum in enumerations:
-                if value == enum:
-                    enumeration_respectee = True
-                    break
-            if not enumeration_respectee:
-                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
-    def validate_TServ(self, value):
-        # Validate type TServ, a restriction on TString.
+    def validate_TVerEvento(self, value):
+        # Validate type TVerEvento, a restriction on xs:string.
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
-                    self.validate_TServ_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TServ_patterns_, ))
-    validate_TServ_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
-    def validate_TChNFe(self, value):
-        # Validate type TChNFe, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            if len(value) > 44:
-                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChNFe' % {"value" : value.encode("utf-8")} )
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TChNFe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChNFe_patterns_, ))
-    validate_TChNFe_patterns_ = [['^[0-9]{44}$']]
-    def validate_TVerConsSitMDFe(self, value):
-        # Validate type TVerConsSitMDFe, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TVerConsSitMDFe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsSitMDFe_patterns_, ))
-    validate_TVerConsSitMDFe_patterns_ = [['^3\\.00$']]
+                    self.validate_TVerEvento_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerEvento_patterns_, ))
+    validate_TVerEvento_patterns_ = [['^3\\.00$']]
     def hasContent_(self):
         if (
-            self.tpAmb is not None or
-            self.xServ is not None or
-            self.chMDFe is not None
+            self.infEvento is not None or
+            self.Signature is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TConsSitMDFe', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsSitMDFe')
+    def export(self, outfile, level, namespace_='', name_='TEvento', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TEvento')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -798,32 +763,27 @@ class TConsSitMDFe(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TConsSitMDFe')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TEvento')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='TConsSitMDFe', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TEvento', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TConsSitMDFe'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TEvento'):
         if self.versao is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='TConsSitMDFe', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TEvento', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.tpAmb is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
-        if self.xServ is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<xServ>%s</xServ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xServ), input_name='xServ')), eol_))
-        if self.chMDFe is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
+        if self.infEvento is not None:
+            self.infEvento.export(outfile, level, namespace_, name_='infEvento', pretty_print=pretty_print)
+        if self.Signature is not None:
+            self.Signature.export(outfile, level, namespace_='ds:', name_='Signature', pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -836,156 +796,64 @@ class TConsSitMDFe(GeneratedsSuper):
         if value is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             self.versao = value
-            self.validate_TVerConsSitMDFe(self.versao)    # validate type TVerConsSitMDFe
+            self.validate_TVerEvento(self.versao)    # validate type TVerEvento
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'tpAmb':
-            tpAmb_ = child_.text
-            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
-            self.tpAmb = tpAmb_
-            # validate type TAmb
-            self.validate_TAmb(self.tpAmb)
-        elif nodeName_ == 'xServ':
-            xServ_ = child_.text
-            xServ_ = self.gds_validate_string(xServ_, node, 'xServ')
-            self.xServ = xServ_
-            # validate type TServ
-            self.validate_TServ(self.xServ)
-        elif nodeName_ == 'chMDFe':
-            chMDFe_ = child_.text
-            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
-            self.chMDFe = chMDFe_
-            # validate type TChNFe
-            self.validate_TChNFe(self.chMDFe)
-# end class TConsSitMDFe
+        if nodeName_ == 'infEvento':
+            obj_ = infEventoType.factory()
+            obj_.build(child_)
+            self.infEvento = obj_
+            obj_.original_tagname_ = 'infEvento'
+        elif nodeName_ == 'Signature':
+            obj_ = SignatureType.factory()
+            obj_.build(child_)
+            self.Signature = obj_
+            obj_.original_tagname_ = 'Signature'
+# end class TEvento
 
 
-class TRetConsSitMDFe(GeneratedsSuper):
-    """Tipo Retorno de Pedido de Consulta da Situação Atual do MDF-e"""
+class TRetEvento(GeneratedsSuper):
+    """Tipo retorno do Evento"""
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, protMDFe=None, procEventoMDFe=None):
+    def __init__(self, versao=None, infEvento=None, Signature=None):
         self.original_tagname_ = None
         self.versao = _cast(None, versao)
-        self.tpAmb = tpAmb
-        self.validate_TAmb(self.tpAmb)
-        self.verAplic = verAplic
-        self.validate_TVerAplic(self.verAplic)
-        self.cStat = cStat
-        self.validate_TStat(self.cStat)
-        self.xMotivo = xMotivo
-        self.validate_TMotivo(self.xMotivo)
-        self.cUF = cUF
-        self.validate_TCodUfIBGE(self.cUF)
-        self.protMDFe = protMDFe
-        if procEventoMDFe is None:
-            self.procEventoMDFe = []
-        else:
-            self.procEventoMDFe = procEventoMDFe
+        self.infEvento = infEvento
+        self.Signature = Signature
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, TRetConsSitMDFe)
+                CurrentSubclassModule_, TRetEvento)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if TRetConsSitMDFe.subclass:
-            return TRetConsSitMDFe.subclass(*args_, **kwargs_)
+        if TRetEvento.subclass:
+            return TRetEvento.subclass(*args_, **kwargs_)
         else:
-            return TRetConsSitMDFe(*args_, **kwargs_)
+            return TRetEvento(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_tpAmb(self): return self.tpAmb
-    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
-    def get_verAplic(self): return self.verAplic
-    def set_verAplic(self, verAplic): self.verAplic = verAplic
-    def get_cStat(self): return self.cStat
-    def set_cStat(self, cStat): self.cStat = cStat
-    def get_xMotivo(self): return self.xMotivo
-    def set_xMotivo(self, xMotivo): self.xMotivo = xMotivo
-    def get_cUF(self): return self.cUF
-    def set_cUF(self, cUF): self.cUF = cUF
-    def get_protMDFe(self): return self.protMDFe
-    def set_protMDFe(self, protMDFe): self.protMDFe = protMDFe
-    def get_procEventoMDFe(self): return self.procEventoMDFe
-    def set_procEventoMDFe(self, procEventoMDFe): self.procEventoMDFe = procEventoMDFe
-    def add_procEventoMDFe(self, value): self.procEventoMDFe.append(value)
-    def insert_procEventoMDFe_at(self, index, value): self.procEventoMDFe.insert(index, value)
-    def replace_procEventoMDFe_at(self, index, value): self.procEventoMDFe[index] = value
+    def get_infEvento(self): return self.infEvento
+    def set_infEvento(self, infEvento): self.infEvento = infEvento
+    def get_Signature(self): return self.Signature
+    def set_Signature(self, Signature): self.Signature = Signature
     def get_versao(self): return self.versao
     def set_versao(self, versao): self.versao = versao
-    def validate_TAmb(self, value):
-        # Validate type TAmb, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            value = str(value)
-            enumerations = ['1', '2']
-            enumeration_respectee = False
-            for enum in enumerations:
-                if value == enum:
-                    enumeration_respectee = True
-                    break
-            if not enumeration_respectee:
-                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
-    def validate_TVerAplic(self, value):
-        # Validate type TVerAplic, a restriction on TString.
-        if value is not None and Validate_simpletypes_:
-            if len(str(value)) > 20:
-                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TVerAplic' % {"value" : value} )
-            if len(str(value)) < 1:
-                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TVerAplic' % {"value" : value} )
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TVerAplic_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerAplic_patterns_, ))
-    validate_TVerAplic_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
-    def validate_TStat(self, value):
-        # Validate type TStat, a restriction on xs:string.
+    def validate_TVerEvento(self, value):
+        # Validate type TVerEvento, a restriction on xs:string.
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
-                    self.validate_TStat_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TStat_patterns_, ))
-    validate_TStat_patterns_ = [['^[0-9]{3}$']]
-    def validate_TMotivo(self, value):
-        # Validate type TMotivo, a restriction on TString.
-        if value is not None and Validate_simpletypes_:
-            if len(str(value)) > 255:
-                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TMotivo' % {"value" : value} )
-            if len(str(value)) < 1:
-                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TMotivo' % {"value" : value} )
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TMotivo_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TMotivo_patterns_, ))
-    validate_TMotivo_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
-    def validate_TCodUfIBGE(self, value):
-        # Validate type TCodUfIBGE, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            value = str(value)
-            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53']
-            enumeration_respectee = False
-            for enum in enumerations:
-                if value == enum:
-                    enumeration_respectee = True
-                    break
-            if not enumeration_respectee:
-                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : value.encode("utf-8")} )
-    def validate_TVerConsSitMDFe(self, value):
-        # Validate type TVerConsSitMDFe, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TVerConsSitMDFe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsSitMDFe_patterns_, ))
-    validate_TVerConsSitMDFe_patterns_ = [['^3\\.00$']]
+                    self.validate_TVerEvento_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerEvento_patterns_, ))
+    validate_TVerEvento_patterns_ = [['^3\\.00$']]
     def hasContent_(self):
         if (
-            self.tpAmb is not None or
-            self.verAplic is not None or
-            self.cStat is not None or
-            self.xMotivo is not None or
-            self.cUF is not None or
-            self.protMDFe is not None or
-            self.procEventoMDFe
+            self.infEvento is not None or
+            self.Signature is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TRetConsSitMDFe', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsSitMDFe')
+    def export(self, outfile, level, namespace_='', name_='TRetEvento', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetEvento')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -997,42 +865,27 @@ class TRetConsSitMDFe(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetConsSitMDFe')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetEvento')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetConsSitMDFe', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetEvento', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetConsSitMDFe'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetEvento'):
         if self.versao is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='TRetConsSitMDFe', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TRetEvento', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.tpAmb is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
-        if self.verAplic is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<verAplic>%s</verAplic>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.verAplic), input_name='verAplic')), eol_))
-        if self.cStat is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<cStat>%s</cStat>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cStat), input_name='cStat')), eol_))
-        if self.xMotivo is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<xMotivo>%s</xMotivo>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xMotivo), input_name='xMotivo')), eol_))
-        if self.cUF is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<cUF>%s</cUF>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), eol_))
-        if self.protMDFe is not None:
-            self.protMDFe.export(outfile, level, namespace_, name_='protMDFe', pretty_print=pretty_print)
-        for procEventoMDFe_ in self.procEventoMDFe:
-            procEventoMDFe_.export(outfile, level, namespace_, name_='procEventoMDFe', pretty_print=pretty_print)
+        if self.infEvento is not None:
+            self.infEvento.export(outfile, level, namespace_, name_='infEvento', pretty_print=pretty_print)
+        if self.Signature is not None:
+            self.Signature.export(outfile, level, namespace_='ds:', name_='Signature', pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1045,49 +898,139 @@ class TRetConsSitMDFe(GeneratedsSuper):
         if value is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             self.versao = value
-            self.validate_TVerConsSitMDFe(self.versao)    # validate type TVerConsSitMDFe
+            self.validate_TVerEvento(self.versao)    # validate type TVerEvento
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'tpAmb':
-            tpAmb_ = child_.text
-            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
-            self.tpAmb = tpAmb_
-            # validate type TAmb
-            self.validate_TAmb(self.tpAmb)
-        elif nodeName_ == 'verAplic':
-            verAplic_ = child_.text
-            verAplic_ = self.gds_validate_string(verAplic_, node, 'verAplic')
-            self.verAplic = verAplic_
-            # validate type TVerAplic
-            self.validate_TVerAplic(self.verAplic)
-        elif nodeName_ == 'cStat':
-            cStat_ = child_.text
-            cStat_ = self.gds_validate_string(cStat_, node, 'cStat')
-            self.cStat = cStat_
-            # validate type TStat
-            self.validate_TStat(self.cStat)
-        elif nodeName_ == 'xMotivo':
-            xMotivo_ = child_.text
-            xMotivo_ = self.gds_validate_string(xMotivo_, node, 'xMotivo')
-            self.xMotivo = xMotivo_
-            # validate type TMotivo
-            self.validate_TMotivo(self.xMotivo)
-        elif nodeName_ == 'cUF':
-            cUF_ = child_.text
-            cUF_ = self.gds_validate_string(cUF_, node, 'cUF')
-            self.cUF = cUF_
-            # validate type TCodUfIBGE
-            self.validate_TCodUfIBGE(self.cUF)
-        elif nodeName_ == 'protMDFe':
-            obj_ = protMDFeType.factory()
+        if nodeName_ == 'infEvento':
+            obj_ = infEventoType1.factory()
             obj_.build(child_)
-            self.protMDFe = obj_
-            obj_.original_tagname_ = 'protMDFe'
-        elif nodeName_ == 'procEventoMDFe':
-            obj_ = procEventoMDFeType.factory()
+            self.infEvento = obj_
+            obj_.original_tagname_ = 'infEvento'
+        elif nodeName_ == 'Signature':
+            obj_ = SignatureType.factory()
             obj_.build(child_)
-            self.procEventoMDFe.append(obj_)
-            obj_.original_tagname_ = 'procEventoMDFe'
-# end class TRetConsSitMDFe
+            self.Signature = obj_
+            obj_.original_tagname_ = 'Signature'
+# end class TRetEvento
+
+
+class TProcEvento(GeneratedsSuper):
+    """Tipo procEvento"""
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, ipTransmissor=None, eventoMDFe=None, retEventoMDFe=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.ipTransmissor = _cast(None, ipTransmissor)
+        self.eventoMDFe = eventoMDFe
+        self.retEventoMDFe = retEventoMDFe
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, TProcEvento)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if TProcEvento.subclass:
+            return TProcEvento.subclass(*args_, **kwargs_)
+        else:
+            return TProcEvento(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_eventoMDFe(self): return self.eventoMDFe
+    def set_eventoMDFe(self, eventoMDFe): self.eventoMDFe = eventoMDFe
+    def get_retEventoMDFe(self): return self.retEventoMDFe
+    def set_retEventoMDFe(self, retEventoMDFe): self.retEventoMDFe = retEventoMDFe
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def get_ipTransmissor(self): return self.ipTransmissor
+    def set_ipTransmissor(self, ipTransmissor): self.ipTransmissor = ipTransmissor
+    def validate_TVerEvento(self, value):
+        # Validate type TVerEvento, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerEvento_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerEvento_patterns_, ))
+    validate_TVerEvento_patterns_ = [['^3\\.00$']]
+    def validate_TIPv4(self, value):
+        # Validate type TIPv4, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TIPv4_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TIPv4_patterns_, ))
+    validate_TIPv4_patterns_ = [['^(([0-9]$|^[1-9][0-9]$|^1[0-9]{2}$|^2[0-4][0-9]$|^25[0-5])\\.){3}([0-9]$|^[1-9][0-9]$|^1[0-9]{2}$|^2[0-4][0-9]$|^25[0-5])$']]
+    def hasContent_(self):
+        if (
+            self.eventoMDFe is not None or
+            self.retEventoMDFe is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='TProcEvento', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TProcEvento')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TProcEvento')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TProcEvento', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TProcEvento'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+        if self.ipTransmissor is not None and 'ipTransmissor' not in already_processed:
+            already_processed.add('ipTransmissor')
+            outfile.write(' ipTransmissor=%s' % (quote_attrib(self.ipTransmissor), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TProcEvento', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.eventoMDFe is not None:
+            self.eventoMDFe.export(outfile, level, namespace_, name_='eventoMDFe', pretty_print=pretty_print)
+        if self.retEventoMDFe is not None:
+            self.retEventoMDFe.export(outfile, level, namespace_, name_='retEventoMDFe', pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerEvento(self.versao)    # validate type TVerEvento
+        value = find_attr_value_('ipTransmissor', node)
+        if value is not None and 'ipTransmissor' not in already_processed:
+            already_processed.add('ipTransmissor')
+            self.ipTransmissor = value
+            self.validate_TIPv4(self.ipTransmissor)    # validate type TIPv4
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'eventoMDFe':
+            obj_ = TEvento.factory()
+            obj_.build(child_)
+            self.eventoMDFe = obj_
+            obj_.original_tagname_ = 'eventoMDFe'
+        elif nodeName_ == 'retEventoMDFe':
+            obj_ = TRetEvento.factory()
+            obj_.build(child_)
+            self.retEventoMDFe = obj_
+            obj_.original_tagname_ = 'retEventoMDFe'
+# end class TProcEvento
 
 
 class SignatureType(GeneratedsSuper):
@@ -1834,37 +1777,125 @@ class X509DataType(GeneratedsSuper):
 # end class X509DataType
 
 
-class protMDFeType(GeneratedsSuper):
+class infEventoType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, versao=None, anytypeobjs_=None):
+    def __init__(self, Id=None, cOrgao=None, tpAmb=None, CNPJ=None, chMDFe=None, dhEvento=None, tpEvento=None, nSeqEvento=None, detEvento=None):
         self.original_tagname_ = None
-        self.versao = _cast(None, versao)
-        self.anytypeobjs_ = anytypeobjs_
+        self.Id = _cast(None, Id)
+        self.cOrgao = cOrgao
+        self.validate_TCOrgaoIBGE(self.cOrgao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.CNPJ = CNPJ
+        self.validate_TCnpj(self.CNPJ)
+        self.chMDFe = chMDFe
+        self.validate_TChMDFe(self.chMDFe)
+        self.dhEvento = dhEvento
+        self.validate_TDateTimeUTC(self.dhEvento)
+        self.tpEvento = tpEvento
+        self.nSeqEvento = nSeqEvento
+        self.validate_nSeqEventoType(self.nSeqEvento)
+        self.detEvento = detEvento
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, protMDFeType)
+                CurrentSubclassModule_, infEventoType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if protMDFeType.subclass:
-            return protMDFeType.subclass(*args_, **kwargs_)
+        if infEventoType.subclass:
+            return infEventoType.subclass(*args_, **kwargs_)
         else:
-            return protMDFeType(*args_, **kwargs_)
+            return infEventoType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_anytypeobjs_(self): return self.anytypeobjs_
-    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
-    def get_versao(self): return self.versao
-    def set_versao(self, versao): self.versao = versao
+    def get_cOrgao(self): return self.cOrgao
+    def set_cOrgao(self, cOrgao): self.cOrgao = cOrgao
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_CNPJ(self): return self.CNPJ
+    def set_CNPJ(self, CNPJ): self.CNPJ = CNPJ
+    def get_chMDFe(self): return self.chMDFe
+    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_dhEvento(self): return self.dhEvento
+    def set_dhEvento(self, dhEvento): self.dhEvento = dhEvento
+    def get_tpEvento(self): return self.tpEvento
+    def set_tpEvento(self, tpEvento): self.tpEvento = tpEvento
+    def get_nSeqEvento(self): return self.nSeqEvento
+    def set_nSeqEvento(self, nSeqEvento): self.nSeqEvento = nSeqEvento
+    def get_detEvento(self): return self.detEvento
+    def set_detEvento(self, detEvento): self.detEvento = detEvento
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
+    def validate_TCOrgaoIBGE(self, value):
+        # Validate type TCOrgaoIBGE, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53', '90', '91', '92', '93']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCOrgaoIBGE' % {"value" : value.encode("utf-8")} )
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TCnpj(self, value):
+        # Validate type TCnpj, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TCnpj_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+    validate_TCnpj_patterns_ = [['^[0-9]{14}$']]
+    def validate_TChMDFe(self, value):
+        # Validate type TChMDFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if len(value) > 44:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChMDFe' % {"value" : value.encode("utf-8")} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TChMDFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChMDFe_patterns_, ))
+    validate_TChMDFe_patterns_ = [['^[0-9]{44}$']]
+    def validate_TDateTimeUTC(self, value):
+        # Validate type TDateTimeUTC, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TDateTimeUTC_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TDateTimeUTC_patterns_, ))
+    validate_TDateTimeUTC_patterns_ = [['^(((20(([02468][048])$|^([13579][26]))-02-29))$|^(20[0-9][0-9])-((((0[1-9])$|^(1[0-2]))-((0[1-9])$|^(1\\d)$|^(2[0-8])))$|^((((0[13578])$|^(1[02]))-31)$|^(((0[1,3-9])$|^(1[0-2]))-(29$|^30)))))T(20$|^21$|^22$|^23$|^[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]$|^10$|^11):00$|^([\\+](12):00))$']]
+    def validate_nSeqEventoType(self, value):
+        # Validate type nSeqEventoType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_nSeqEventoType_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_nSeqEventoType_patterns_, ))
+    validate_nSeqEventoType_patterns_ = [['^[1-9][0-9]$|^0?[1-9]$']]
     def hasContent_(self):
         if (
-            self.anytypeobjs_ is not None
+            self.cOrgao is not None or
+            self.tpAmb is not None or
+            self.CNPJ is not None or
+            self.chMDFe is not None or
+            self.dhEvento is not None or
+            self.tpEvento is not None or
+            self.nSeqEvento is not None or
+            self.detEvento is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='protMDFeType', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('protMDFeType')
+    def export(self, outfile, level, namespace_='', name_='infEventoType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infEventoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -1876,19 +1907,170 @@ class protMDFeType(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='protMDFeType')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infEventoType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='protMDFeType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='infEventoType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='protMDFeType'):
-        if self.versao is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='protMDFeType', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infEventoType'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='infEventoType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.cOrgao is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cOrgao>%s</cOrgao>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cOrgao), input_name='cOrgao')), eol_))
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.CNPJ is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<CNPJ>%s</CNPJ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.CNPJ), input_name='CNPJ')), eol_))
+        if self.chMDFe is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
+        if self.dhEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<dhEvento>%s</dhEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.dhEvento), input_name='dhEvento')), eol_))
+        if self.tpEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpEvento>%s</tpEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpEvento), input_name='tpEvento')), eol_))
+        if self.nSeqEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<nSeqEvento>%s</nSeqEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.nSeqEvento), input_name='nSeqEvento')), eol_))
+        if self.detEvento is not None:
+            self.detEvento.export(outfile, level, namespace_, name_='detEvento', pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'cOrgao':
+            cOrgao_ = child_.text
+            cOrgao_ = self.gds_validate_string(cOrgao_, node, 'cOrgao')
+            self.cOrgao = cOrgao_
+            # validate type TCOrgaoIBGE
+            self.validate_TCOrgaoIBGE(self.cOrgao)
+        elif nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'CNPJ':
+            CNPJ_ = child_.text
+            CNPJ_ = self.gds_validate_string(CNPJ_, node, 'CNPJ')
+            self.CNPJ = CNPJ_
+            # validate type TCnpj
+            self.validate_TCnpj(self.CNPJ)
+        elif nodeName_ == 'chMDFe':
+            chMDFe_ = child_.text
+            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
+            self.chMDFe = chMDFe_
+            # validate type TChMDFe
+            self.validate_TChMDFe(self.chMDFe)
+        elif nodeName_ == 'dhEvento':
+            dhEvento_ = child_.text
+            dhEvento_ = self.gds_validate_string(dhEvento_, node, 'dhEvento')
+            self.dhEvento = dhEvento_
+            # validate type TDateTimeUTC
+            self.validate_TDateTimeUTC(self.dhEvento)
+        elif nodeName_ == 'tpEvento':
+            tpEvento_ = child_.text
+            tpEvento_ = self.gds_validate_string(tpEvento_, node, 'tpEvento')
+            self.tpEvento = tpEvento_
+        elif nodeName_ == 'nSeqEvento':
+            nSeqEvento_ = child_.text
+            nSeqEvento_ = self.gds_validate_string(nSeqEvento_, node, 'nSeqEvento')
+            self.nSeqEvento = nSeqEvento_
+            # validate type nSeqEventoType
+            self.validate_nSeqEventoType(self.nSeqEvento)
+        elif nodeName_ == 'detEvento':
+            obj_ = detEventoType.factory()
+            obj_.build(child_)
+            self.detEvento = obj_
+            obj_.original_tagname_ = 'detEvento'
+# end class infEventoType
+
+
+class detEventoType(GeneratedsSuper):
+    """Detalhamento do evento específico"""
+    subclass = None
+    superclass = None
+    def __init__(self, versaoEvento=None, anytypeobjs_=None):
+        self.original_tagname_ = None
+        self.versaoEvento = _cast(None, versaoEvento)
+        self.anytypeobjs_ = anytypeobjs_
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, detEventoType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if detEventoType.subclass:
+            return detEventoType.subclass(*args_, **kwargs_)
+        else:
+            return detEventoType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_anytypeobjs_(self): return self.anytypeobjs_
+    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
+    def get_versaoEvento(self): return self.versaoEvento
+    def set_versaoEvento(self, versaoEvento): self.versaoEvento = versaoEvento
+    def validate_TVerEvento(self, value):
+        # Validate type TVerEvento, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerEvento_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerEvento_patterns_, ))
+    validate_TVerEvento_patterns_ = [['^3\\.00$']]
+    def hasContent_(self):
+        if (
+            self.anytypeobjs_ is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='detEventoType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('detEventoType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='detEventoType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='detEventoType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='detEventoType'):
+        if self.versaoEvento is not None and 'versaoEvento' not in already_processed:
+            already_processed.add('versaoEvento')
+            outfile.write(' versaoEvento=%s' % (quote_attrib(self.versaoEvento), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='detEventoType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -1903,48 +2085,201 @@ class protMDFeType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('versao', node)
-        if value is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            self.versao = value
+        value = find_attr_value_('versaoEvento', node)
+        if value is not None and 'versaoEvento' not in already_processed:
+            already_processed.add('versaoEvento')
+            self.versaoEvento = value
+            self.validate_TVerEvento(self.versaoEvento)    # validate type TVerEvento
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        obj_ = self.gds_build_any(child_, 'protMDFeType')
+        obj_ = self.gds_build_any(child_, 'detEventoType')
         if obj_ is not None:
             self.set_anytypeobjs_(obj_)
-# end class protMDFeType
+# end class detEventoType
 
 
-class procEventoMDFeType(GeneratedsSuper):
+class infEventoType1(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, versao=None, anytypeobjs_=None):
+    def __init__(self, Id=None, tpAmb=None, verAplic=None, cOrgao=None, cStat=None, xMotivo=None, chMDFe=None, tpEvento=None, xEvento=None, nSeqEvento=None, dhRegEvento=None, nProt=None):
         self.original_tagname_ = None
-        self.versao = _cast(None, versao)
-        self.anytypeobjs_ = anytypeobjs_
+        self.Id = _cast(None, Id)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.verAplic = verAplic
+        self.validate_TVerAplic(self.verAplic)
+        self.cOrgao = cOrgao
+        self.validate_TCOrgaoIBGE(self.cOrgao)
+        self.cStat = cStat
+        self.validate_TStat(self.cStat)
+        self.xMotivo = xMotivo
+        self.validate_TMotivo(self.xMotivo)
+        self.chMDFe = chMDFe
+        self.validate_TChMDFe(self.chMDFe)
+        self.tpEvento = tpEvento
+        self.validate_tpEventoType(self.tpEvento)
+        self.xEvento = xEvento
+        self.validate_xEventoType(self.xEvento)
+        self.nSeqEvento = nSeqEvento
+        self.validate_nSeqEventoType2(self.nSeqEvento)
+        self.dhRegEvento = dhRegEvento
+        self.validate_TDateTimeUTC(self.dhRegEvento)
+        self.nProt = nProt
+        self.validate_TProt(self.nProt)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, procEventoMDFeType)
+                CurrentSubclassModule_, infEventoType1)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if procEventoMDFeType.subclass:
-            return procEventoMDFeType.subclass(*args_, **kwargs_)
+        if infEventoType1.subclass:
+            return infEventoType1.subclass(*args_, **kwargs_)
         else:
-            return procEventoMDFeType(*args_, **kwargs_)
+            return infEventoType1(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_anytypeobjs_(self): return self.anytypeobjs_
-    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
-    def get_versao(self): return self.versao
-    def set_versao(self, versao): self.versao = versao
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_verAplic(self): return self.verAplic
+    def set_verAplic(self, verAplic): self.verAplic = verAplic
+    def get_cOrgao(self): return self.cOrgao
+    def set_cOrgao(self, cOrgao): self.cOrgao = cOrgao
+    def get_cStat(self): return self.cStat
+    def set_cStat(self, cStat): self.cStat = cStat
+    def get_xMotivo(self): return self.xMotivo
+    def set_xMotivo(self, xMotivo): self.xMotivo = xMotivo
+    def get_chMDFe(self): return self.chMDFe
+    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_tpEvento(self): return self.tpEvento
+    def set_tpEvento(self, tpEvento): self.tpEvento = tpEvento
+    def get_xEvento(self): return self.xEvento
+    def set_xEvento(self, xEvento): self.xEvento = xEvento
+    def get_nSeqEvento(self): return self.nSeqEvento
+    def set_nSeqEvento(self, nSeqEvento): self.nSeqEvento = nSeqEvento
+    def get_dhRegEvento(self): return self.dhRegEvento
+    def set_dhRegEvento(self, dhRegEvento): self.dhRegEvento = dhRegEvento
+    def get_nProt(self): return self.nProt
+    def set_nProt(self, nProt): self.nProt = nProt
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TVerAplic(self, value):
+        # Validate type TVerAplic, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 20:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TVerAplic' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TVerAplic' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerAplic_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerAplic_patterns_, ))
+    validate_TVerAplic_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TCOrgaoIBGE(self, value):
+        # Validate type TCOrgaoIBGE, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53', '90', '91', '92', '93']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCOrgaoIBGE' % {"value" : value.encode("utf-8")} )
+    def validate_TStat(self, value):
+        # Validate type TStat, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TStat_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TStat_patterns_, ))
+    validate_TStat_patterns_ = [['^[0-9]{3}$']]
+    def validate_TMotivo(self, value):
+        # Validate type TMotivo, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 255:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TMotivo' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TMotivo' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TMotivo_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TMotivo_patterns_, ))
+    validate_TMotivo_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TChMDFe(self, value):
+        # Validate type TChMDFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if len(value) > 44:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChMDFe' % {"value" : value.encode("utf-8")} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TChMDFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChMDFe_patterns_, ))
+    validate_TChMDFe_patterns_ = [['^[0-9]{44}$']]
+    def validate_tpEventoType(self, value):
+        # Validate type tpEventoType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_tpEventoType_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_tpEventoType_patterns_, ))
+    validate_tpEventoType_patterns_ = [['^[0-9]{6}$']]
+    def validate_xEventoType(self, value):
+        # Validate type xEventoType, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 60:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on xEventoType' % {"value" : value} )
+            if len(str(value)) < 5:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on xEventoType' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_xEventoType_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_xEventoType_patterns_, ))
+    validate_xEventoType_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_nSeqEventoType2(self, value):
+        # Validate type nSeqEventoType2, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_nSeqEventoType2_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_nSeqEventoType2_patterns_, ))
+    validate_nSeqEventoType2_patterns_ = [['^[1-9][0-9]$|^0?[1-9]$']]
+    def validate_TDateTimeUTC(self, value):
+        # Validate type TDateTimeUTC, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TDateTimeUTC_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TDateTimeUTC_patterns_, ))
+    validate_TDateTimeUTC_patterns_ = [['^(((20(([02468][048])$|^([13579][26]))-02-29))$|^(20[0-9][0-9])-((((0[1-9])$|^(1[0-2]))-((0[1-9])$|^(1\\d)$|^(2[0-8])))$|^((((0[13578])$|^(1[02]))-31)$|^(((0[1,3-9])$|^(1[0-2]))-(29$|^30)))))T(20$|^21$|^22$|^23$|^[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]$|^10$|^11):00$|^([\\+](12):00))$']]
+    def validate_TProt(self, value):
+        # Validate type TProt, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TProt_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TProt_patterns_, ))
+    validate_TProt_patterns_ = [['^[0-9]{15}$']]
     def hasContent_(self):
         if (
-            self.anytypeobjs_ is not None
+            self.tpAmb is not None or
+            self.verAplic is not None or
+            self.cOrgao is not None or
+            self.cStat is not None or
+            self.xMotivo is not None or
+            self.chMDFe is not None or
+            self.tpEvento is not None or
+            self.xEvento is not None or
+            self.nSeqEvento is not None or
+            self.dhRegEvento is not None or
+            self.nProt is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='procEventoMDFeType', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('procEventoMDFeType')
+    def export(self, outfile, level, namespace_='', name_='infEventoType1', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infEventoType1')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -1956,25 +2291,56 @@ class procEventoMDFeType(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='procEventoMDFeType')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infEventoType1')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='procEventoMDFeType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='infEventoType1', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='procEventoMDFeType'):
-        if self.versao is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='procEventoMDFeType', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infEventoType1'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='infEventoType1', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.anytypeobjs_ is not None:
-            self.anytypeobjs_.export(outfile, level, namespace_, pretty_print=pretty_print)
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.verAplic is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<verAplic>%s</verAplic>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.verAplic), input_name='verAplic')), eol_))
+        if self.cOrgao is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cOrgao>%s</cOrgao>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cOrgao), input_name='cOrgao')), eol_))
+        if self.cStat is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cStat>%s</cStat>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cStat), input_name='cStat')), eol_))
+        if self.xMotivo is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xMotivo>%s</xMotivo>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xMotivo), input_name='xMotivo')), eol_))
+        if self.chMDFe is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
+        if self.tpEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpEvento>%s</tpEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpEvento), input_name='tpEvento')), eol_))
+        if self.xEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xEvento>%s</xEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xEvento), input_name='xEvento')), eol_))
+        if self.nSeqEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<nSeqEvento>%s</nSeqEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.nSeqEvento), input_name='nSeqEvento')), eol_))
+        if self.dhRegEvento is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<dhRegEvento>%s</dhRegEvento>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.dhRegEvento), input_name='dhRegEvento')), eol_))
+        if self.nProt is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<nProt>%s</nProt>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.nProt), input_name='nProt')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1983,15 +2349,78 @@ class procEventoMDFeType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('versao', node)
-        if value is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            self.versao = value
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        obj_ = self.gds_build_any(child_, 'procEventoMDFeType')
-        if obj_ is not None:
-            self.set_anytypeobjs_(obj_)
-# end class procEventoMDFeType
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'verAplic':
+            verAplic_ = child_.text
+            verAplic_ = self.gds_validate_string(verAplic_, node, 'verAplic')
+            self.verAplic = verAplic_
+            # validate type TVerAplic
+            self.validate_TVerAplic(self.verAplic)
+        elif nodeName_ == 'cOrgao':
+            cOrgao_ = child_.text
+            cOrgao_ = self.gds_validate_string(cOrgao_, node, 'cOrgao')
+            self.cOrgao = cOrgao_
+            # validate type TCOrgaoIBGE
+            self.validate_TCOrgaoIBGE(self.cOrgao)
+        elif nodeName_ == 'cStat':
+            cStat_ = child_.text
+            cStat_ = self.gds_validate_string(cStat_, node, 'cStat')
+            self.cStat = cStat_
+            # validate type TStat
+            self.validate_TStat(self.cStat)
+        elif nodeName_ == 'xMotivo':
+            xMotivo_ = child_.text
+            xMotivo_ = self.gds_validate_string(xMotivo_, node, 'xMotivo')
+            self.xMotivo = xMotivo_
+            # validate type TMotivo
+            self.validate_TMotivo(self.xMotivo)
+        elif nodeName_ == 'chMDFe':
+            chMDFe_ = child_.text
+            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
+            self.chMDFe = chMDFe_
+            # validate type TChMDFe
+            self.validate_TChMDFe(self.chMDFe)
+        elif nodeName_ == 'tpEvento':
+            tpEvento_ = child_.text
+            tpEvento_ = self.gds_validate_string(tpEvento_, node, 'tpEvento')
+            self.tpEvento = tpEvento_
+            # validate type tpEventoType
+            self.validate_tpEventoType(self.tpEvento)
+        elif nodeName_ == 'xEvento':
+            xEvento_ = child_.text
+            xEvento_ = self.gds_validate_string(xEvento_, node, 'xEvento')
+            self.xEvento = xEvento_
+            # validate type xEventoType
+            self.validate_xEventoType(self.xEvento)
+        elif nodeName_ == 'nSeqEvento':
+            nSeqEvento_ = child_.text
+            nSeqEvento_ = self.gds_validate_string(nSeqEvento_, node, 'nSeqEvento')
+            self.nSeqEvento = nSeqEvento_
+            # validate type nSeqEventoType2
+            self.validate_nSeqEventoType2(self.nSeqEvento)
+        elif nodeName_ == 'dhRegEvento':
+            dhRegEvento_ = child_.text
+            dhRegEvento_ = self.gds_validate_string(dhRegEvento_, node, 'dhRegEvento')
+            self.dhRegEvento = dhRegEvento_
+            # validate type TDateTimeUTC
+            self.validate_TDateTimeUTC(self.dhRegEvento)
+        elif nodeName_ == 'nProt':
+            nProt_ = child_.text
+            nProt_ = self.gds_validate_string(nProt_, node, 'nProt')
+            self.nProt = nProt_
+            # validate type TProt
+            self.validate_TProt(self.nProt)
+# end class infEventoType1
 
 
 class CanonicalizationMethodType(GeneratedsSuper):
@@ -2203,7 +2632,7 @@ class DigestMethodType(GeneratedsSuper):
 
 GDSClassesMapping = {
     'Signature': SignatureType,
-    'consSitMDFe': TConsSitMDFe,
+    'eventoMDFe': TEvento,
 }
 
 
@@ -2231,8 +2660,8 @@ def parse(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TEvento'
+        rootClass = TEvento
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2252,8 +2681,8 @@ def parseEtree(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TEvento'
+        rootClass = TEvento
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2280,8 +2709,8 @@ def parseString(inString, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TEvento'
+        rootClass = TEvento
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2300,15 +2729,15 @@ def parseLiteral(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TEvento'
+        rootClass = TEvento
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
     doc = None
     if not silence:
-        sys.stdout.write('#from consSitMDFe import *\n\n')
-        sys.stdout.write('import consSitMDFe as model_\n\n')
+        sys.stdout.write('#from eventoMDFe import *\n\n')
+        sys.stdout.write('import eventoMDFe as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -2337,11 +2766,13 @@ __all__ = [
     "SignatureType",
     "SignatureValueType",
     "SignedInfoType",
-    "TConsSitMDFe",
-    "TRetConsSitMDFe",
+    "TEvento",
+    "TProcEvento",
+    "TRetEvento",
     "TransformType",
     "TransformsType",
     "X509DataType",
-    "procEventoMDFeType",
-    "protMDFeType"
+    "detEventoType",
+    "infEventoType",
+    "infEventoType1"
 ]

@@ -2,18 +2,18 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Thu May 31 13:45:34 2018 by generateDS.py version 2.29.2.
+# Generated Thu May 31 02:23:00 2018 by generateDS.py version 2.29.2.
 # Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
 #   ('--no-namespace-defs', '')
-#   ('-o', 'mdfelib/v3_00/consSitMDFe.py')
+#   ('-o', 'mdfelib/v3_00/consMDFeNaoEnc.py')
 #
 # Command line arguments:
-#   schemas/v3_00/consSitMDFe_v3.00.xsd
+#   schemas/v3_00/consMDFeNaoEnc_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/consSitMDFe.py" schemas/v3_00/consSitMDFe_v3.00.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/consMDFeNaoEnc.py" schemas/v3_00/consMDFeNaoEnc_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib
@@ -709,36 +709,36 @@ def _cast(typ, value):
 #
 
 
-class TConsSitMDFe(GeneratedsSuper):
-    """Tipo Pedido de Consulta da Situação Atual do MDF-e"""
+class TConsMDFeNaoEnc(GeneratedsSuper):
+    """Tipo Pedido de Consulta MDF-e Não Encerrados"""
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, xServ=None, chMDFe=None):
+    def __init__(self, versao=None, tpAmb=None, xServ=None, CNPJ=None):
         self.original_tagname_ = None
         self.versao = _cast(None, versao)
         self.tpAmb = tpAmb
         self.validate_TAmb(self.tpAmb)
         self.xServ = xServ
         self.validate_TServ(self.xServ)
-        self.chMDFe = chMDFe
-        self.validate_TChNFe(self.chMDFe)
+        self.CNPJ = CNPJ
+        self.validate_TCnpj(self.CNPJ)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, TConsSitMDFe)
+                CurrentSubclassModule_, TConsMDFeNaoEnc)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if TConsSitMDFe.subclass:
-            return TConsSitMDFe.subclass(*args_, **kwargs_)
+        if TConsMDFeNaoEnc.subclass:
+            return TConsMDFeNaoEnc.subclass(*args_, **kwargs_)
         else:
-            return TConsSitMDFe(*args_, **kwargs_)
+            return TConsMDFeNaoEnc(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_tpAmb(self): return self.tpAmb
     def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
     def get_xServ(self): return self.xServ
     def set_xServ(self, xServ): self.xServ = xServ
-    def get_chMDFe(self): return self.chMDFe
-    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_CNPJ(self): return self.CNPJ
+    def set_CNPJ(self, CNPJ): self.CNPJ = CNPJ
     def get_versao(self): return self.versao
     def set_versao(self, versao): self.versao = versao
     def validate_TAmb(self, value):
@@ -760,33 +760,31 @@ class TConsSitMDFe(GeneratedsSuper):
                     self.validate_TServ_patterns_, value):
                 warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TServ_patterns_, ))
     validate_TServ_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
-    def validate_TChNFe(self, value):
-        # Validate type TChNFe, a restriction on xs:string.
-        if value is not None and Validate_simpletypes_:
-            if len(value) > 44:
-                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChNFe' % {"value" : value.encode("utf-8")} )
-            if not self.gds_validate_simple_patterns(
-                    self.validate_TChNFe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChNFe_patterns_, ))
-    validate_TChNFe_patterns_ = [['^[0-9]{44}$']]
-    def validate_TVerConsSitMDFe(self, value):
-        # Validate type TVerConsSitMDFe, a restriction on xs:string.
+    def validate_TCnpj(self, value):
+        # Validate type TCnpj, a restriction on xs:string.
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
-                    self.validate_TVerConsSitMDFe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsSitMDFe_patterns_, ))
-    validate_TVerConsSitMDFe_patterns_ = [['^3\\.00$']]
+                    self.validate_TCnpj_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+    validate_TCnpj_patterns_ = [['^[0-9]{14}$']]
+    def validate_TVerConsMDFeNaoEnc(self, value):
+        # Validate type TVerConsMDFeNaoEnc, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsMDFeNaoEnc_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsMDFeNaoEnc_patterns_, ))
+    validate_TVerConsMDFeNaoEnc_patterns_ = [['^3\\.00$']]
     def hasContent_(self):
         if (
             self.tpAmb is not None or
             self.xServ is not None or
-            self.chMDFe is not None
+            self.CNPJ is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TConsSitMDFe', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsSitMDFe')
+    def export(self, outfile, level, namespace_='', name_='TConsMDFeNaoEnc', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsMDFeNaoEnc')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -798,19 +796,19 @@ class TConsSitMDFe(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TConsSitMDFe')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TConsMDFeNaoEnc')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='TConsSitMDFe', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TConsMDFeNaoEnc', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TConsSitMDFe'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TConsMDFeNaoEnc'):
         if self.versao is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='TConsSitMDFe', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TConsMDFeNaoEnc', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -821,9 +819,9 @@ class TConsSitMDFe(GeneratedsSuper):
         if self.xServ is not None:
             showIndent(outfile, level, pretty_print)
             outfile.write('<xServ>%s</xServ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xServ), input_name='xServ')), eol_))
-        if self.chMDFe is not None:
+        if self.CNPJ is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
+            outfile.write('<CNPJ>%s</CNPJ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.CNPJ), input_name='CNPJ')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -836,7 +834,7 @@ class TConsSitMDFe(GeneratedsSuper):
         if value is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             self.versao = value
-            self.validate_TVerConsSitMDFe(self.versao)    # validate type TVerConsSitMDFe
+            self.validate_TVerConsMDFeNaoEnc(self.versao)    # validate type TVerConsMDFeNaoEnc
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'tpAmb':
             tpAmb_ = child_.text
@@ -850,20 +848,20 @@ class TConsSitMDFe(GeneratedsSuper):
             self.xServ = xServ_
             # validate type TServ
             self.validate_TServ(self.xServ)
-        elif nodeName_ == 'chMDFe':
-            chMDFe_ = child_.text
-            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
-            self.chMDFe = chMDFe_
-            # validate type TChNFe
-            self.validate_TChNFe(self.chMDFe)
-# end class TConsSitMDFe
+        elif nodeName_ == 'CNPJ':
+            CNPJ_ = child_.text
+            CNPJ_ = self.gds_validate_string(CNPJ_, node, 'CNPJ')
+            self.CNPJ = CNPJ_
+            # validate type TCnpj
+            self.validate_TCnpj(self.CNPJ)
+# end class TConsMDFeNaoEnc
 
 
-class TRetConsSitMDFe(GeneratedsSuper):
-    """Tipo Retorno de Pedido de Consulta da Situação Atual do MDF-e"""
+class TRetConsMDFeNaoEnc(GeneratedsSuper):
+    """Tipo Retorno de Pedido de Consulta MDF-e não Encerrados"""
     subclass = None
     superclass = None
-    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, protMDFe=None, procEventoMDFe=None):
+    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, infMDFe=None):
         self.original_tagname_ = None
         self.versao = _cast(None, versao)
         self.tpAmb = tpAmb
@@ -876,21 +874,20 @@ class TRetConsSitMDFe(GeneratedsSuper):
         self.validate_TMotivo(self.xMotivo)
         self.cUF = cUF
         self.validate_TCodUfIBGE(self.cUF)
-        self.protMDFe = protMDFe
-        if procEventoMDFe is None:
-            self.procEventoMDFe = []
+        if infMDFe is None:
+            self.infMDFe = []
         else:
-            self.procEventoMDFe = procEventoMDFe
+            self.infMDFe = infMDFe
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, TRetConsSitMDFe)
+                CurrentSubclassModule_, TRetConsMDFeNaoEnc)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if TRetConsSitMDFe.subclass:
-            return TRetConsSitMDFe.subclass(*args_, **kwargs_)
+        if TRetConsMDFeNaoEnc.subclass:
+            return TRetConsMDFeNaoEnc.subclass(*args_, **kwargs_)
         else:
-            return TRetConsSitMDFe(*args_, **kwargs_)
+            return TRetConsMDFeNaoEnc(*args_, **kwargs_)
     factory = staticmethod(factory)
     def get_tpAmb(self): return self.tpAmb
     def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
@@ -902,13 +899,11 @@ class TRetConsSitMDFe(GeneratedsSuper):
     def set_xMotivo(self, xMotivo): self.xMotivo = xMotivo
     def get_cUF(self): return self.cUF
     def set_cUF(self, cUF): self.cUF = cUF
-    def get_protMDFe(self): return self.protMDFe
-    def set_protMDFe(self, protMDFe): self.protMDFe = protMDFe
-    def get_procEventoMDFe(self): return self.procEventoMDFe
-    def set_procEventoMDFe(self, procEventoMDFe): self.procEventoMDFe = procEventoMDFe
-    def add_procEventoMDFe(self, value): self.procEventoMDFe.append(value)
-    def insert_procEventoMDFe_at(self, index, value): self.procEventoMDFe.insert(index, value)
-    def replace_procEventoMDFe_at(self, index, value): self.procEventoMDFe[index] = value
+    def get_infMDFe(self): return self.infMDFe
+    def set_infMDFe(self, infMDFe): self.infMDFe = infMDFe
+    def add_infMDFe(self, value): self.infMDFe.append(value)
+    def insert_infMDFe_at(self, index, value): self.infMDFe.insert(index, value)
+    def replace_infMDFe_at(self, index, value): self.infMDFe[index] = value
     def get_versao(self): return self.versao
     def set_versao(self, versao): self.versao = versao
     def validate_TAmb(self, value):
@@ -964,13 +959,13 @@ class TRetConsSitMDFe(GeneratedsSuper):
                     break
             if not enumeration_respectee:
                 warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : value.encode("utf-8")} )
-    def validate_TVerConsSitMDFe(self, value):
-        # Validate type TVerConsSitMDFe, a restriction on xs:string.
+    def validate_TVerConsMDFeNaoEnc(self, value):
+        # Validate type TVerConsMDFeNaoEnc, a restriction on xs:string.
         if value is not None and Validate_simpletypes_:
             if not self.gds_validate_simple_patterns(
-                    self.validate_TVerConsSitMDFe_patterns_, value):
-                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsSitMDFe_patterns_, ))
-    validate_TVerConsSitMDFe_patterns_ = [['^3\\.00$']]
+                    self.validate_TVerConsMDFeNaoEnc_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsMDFeNaoEnc_patterns_, ))
+    validate_TVerConsMDFeNaoEnc_patterns_ = [['^3\\.00$']]
     def hasContent_(self):
         if (
             self.tpAmb is not None or
@@ -978,14 +973,13 @@ class TRetConsSitMDFe(GeneratedsSuper):
             self.cStat is not None or
             self.xMotivo is not None or
             self.cUF is not None or
-            self.protMDFe is not None or
-            self.procEventoMDFe
+            self.infMDFe
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='TRetConsSitMDFe', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsSitMDFe')
+    def export(self, outfile, level, namespace_='', name_='TRetConsMDFeNaoEnc', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsMDFeNaoEnc')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -997,19 +991,19 @@ class TRetConsSitMDFe(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetConsSitMDFe')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetConsMDFeNaoEnc')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetConsSitMDFe', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetConsMDFeNaoEnc', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetConsSitMDFe'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetConsMDFeNaoEnc'):
         if self.versao is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='TRetConsSitMDFe', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TRetConsMDFeNaoEnc', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -1029,10 +1023,8 @@ class TRetConsSitMDFe(GeneratedsSuper):
         if self.cUF is not None:
             showIndent(outfile, level, pretty_print)
             outfile.write('<cUF>%s</cUF>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), eol_))
-        if self.protMDFe is not None:
-            self.protMDFe.export(outfile, level, namespace_, name_='protMDFe', pretty_print=pretty_print)
-        for procEventoMDFe_ in self.procEventoMDFe:
-            procEventoMDFe_.export(outfile, level, namespace_, name_='procEventoMDFe', pretty_print=pretty_print)
+        for infMDFe_ in self.infMDFe:
+            infMDFe_.export(outfile, level, namespace_, name_='infMDFe', pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1045,7 +1037,7 @@ class TRetConsSitMDFe(GeneratedsSuper):
         if value is not None and 'versao' not in already_processed:
             already_processed.add('versao')
             self.versao = value
-            self.validate_TVerConsSitMDFe(self.versao)    # validate type TVerConsSitMDFe
+            self.validate_TVerConsMDFeNaoEnc(self.versao)    # validate type TVerConsMDFeNaoEnc
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'tpAmb':
             tpAmb_ = child_.text
@@ -1077,17 +1069,12 @@ class TRetConsSitMDFe(GeneratedsSuper):
             self.cUF = cUF_
             # validate type TCodUfIBGE
             self.validate_TCodUfIBGE(self.cUF)
-        elif nodeName_ == 'protMDFe':
-            obj_ = protMDFeType.factory()
+        elif nodeName_ == 'infMDFe':
+            obj_ = infMDFeType.factory()
             obj_.build(child_)
-            self.protMDFe = obj_
-            obj_.original_tagname_ = 'protMDFe'
-        elif nodeName_ == 'procEventoMDFe':
-            obj_ = procEventoMDFeType.factory()
-            obj_.build(child_)
-            self.procEventoMDFe.append(obj_)
-            obj_.original_tagname_ = 'procEventoMDFe'
-# end class TRetConsSitMDFe
+            self.infMDFe.append(obj_)
+            obj_.original_tagname_ = 'infMDFe'
+# end class TRetConsMDFeNaoEnc
 
 
 class SignatureType(GeneratedsSuper):
@@ -1834,37 +1821,56 @@ class X509DataType(GeneratedsSuper):
 # end class X509DataType
 
 
-class protMDFeType(GeneratedsSuper):
+class infMDFeType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, versao=None, anytypeobjs_=None):
+    def __init__(self, chMDFe=None, nProt=None):
         self.original_tagname_ = None
-        self.versao = _cast(None, versao)
-        self.anytypeobjs_ = anytypeobjs_
+        self.chMDFe = chMDFe
+        self.validate_TChMDFe(self.chMDFe)
+        self.nProt = nProt
+        self.validate_TProt(self.nProt)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, protMDFeType)
+                CurrentSubclassModule_, infMDFeType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if protMDFeType.subclass:
-            return protMDFeType.subclass(*args_, **kwargs_)
+        if infMDFeType.subclass:
+            return infMDFeType.subclass(*args_, **kwargs_)
         else:
-            return protMDFeType(*args_, **kwargs_)
+            return infMDFeType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_anytypeobjs_(self): return self.anytypeobjs_
-    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
-    def get_versao(self): return self.versao
-    def set_versao(self, versao): self.versao = versao
+    def get_chMDFe(self): return self.chMDFe
+    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_nProt(self): return self.nProt
+    def set_nProt(self, nProt): self.nProt = nProt
+    def validate_TChMDFe(self, value):
+        # Validate type TChMDFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if len(value) > 44:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChMDFe' % {"value" : value.encode("utf-8")} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TChMDFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChMDFe_patterns_, ))
+    validate_TChMDFe_patterns_ = [['^[0-9]{44}$']]
+    def validate_TProt(self, value):
+        # Validate type TProt, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TProt_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TProt_patterns_, ))
+    validate_TProt_patterns_ = [['^[0-9]{15}$']]
     def hasContent_(self):
         if (
-            self.anytypeobjs_ is not None
+            self.chMDFe is not None or
+            self.nProt is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='protMDFeType', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('protMDFeType')
+    def export(self, outfile, level, namespace_='', name_='infMDFeType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infMDFeType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -1876,25 +1882,27 @@ class protMDFeType(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='protMDFeType')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infMDFeType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='protMDFeType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='infMDFeType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='protMDFeType'):
-        if self.versao is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='protMDFeType', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infMDFeType'):
+        pass
+    def exportChildren(self, outfile, level, namespace_='', name_='infMDFeType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.anytypeobjs_ is not None:
-            self.anytypeobjs_.export(outfile, level, namespace_, pretty_print=pretty_print)
+        if self.chMDFe is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
+        if self.nProt is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<nProt>%s</nProt>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.nProt), input_name='nProt')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1903,95 +1911,21 @@ class protMDFeType(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('versao', node)
-        if value is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            self.versao = value
+        pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        obj_ = self.gds_build_any(child_, 'protMDFeType')
-        if obj_ is not None:
-            self.set_anytypeobjs_(obj_)
-# end class protMDFeType
-
-
-class procEventoMDFeType(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, versao=None, anytypeobjs_=None):
-        self.original_tagname_ = None
-        self.versao = _cast(None, versao)
-        self.anytypeobjs_ = anytypeobjs_
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, procEventoMDFeType)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if procEventoMDFeType.subclass:
-            return procEventoMDFeType.subclass(*args_, **kwargs_)
-        else:
-            return procEventoMDFeType(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_anytypeobjs_(self): return self.anytypeobjs_
-    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
-    def get_versao(self): return self.versao
-    def set_versao(self, versao): self.versao = versao
-    def hasContent_(self):
-        if (
-            self.anytypeobjs_ is not None
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='procEventoMDFeType', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('procEventoMDFeType')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='procEventoMDFeType')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='procEventoMDFeType', pretty_print=pretty_print)
-            showIndent(outfile, level, pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='procEventoMDFeType'):
-        if self.versao is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
-    def exportChildren(self, outfile, level, namespace_='', name_='procEventoMDFeType', fromsubclass_=False, pretty_print=True):
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.anytypeobjs_ is not None:
-            self.anytypeobjs_.export(outfile, level, namespace_, pretty_print=pretty_print)
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('versao', node)
-        if value is not None and 'versao' not in already_processed:
-            already_processed.add('versao')
-            self.versao = value
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        obj_ = self.gds_build_any(child_, 'procEventoMDFeType')
-        if obj_ is not None:
-            self.set_anytypeobjs_(obj_)
-# end class procEventoMDFeType
+        if nodeName_ == 'chMDFe':
+            chMDFe_ = child_.text
+            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
+            self.chMDFe = chMDFe_
+            # validate type TChMDFe
+            self.validate_TChMDFe(self.chMDFe)
+        elif nodeName_ == 'nProt':
+            nProt_ = child_.text
+            nProt_ = self.gds_validate_string(nProt_, node, 'nProt')
+            self.nProt = nProt_
+            # validate type TProt
+            self.validate_TProt(self.nProt)
+# end class infMDFeType
 
 
 class CanonicalizationMethodType(GeneratedsSuper):
@@ -2203,7 +2137,7 @@ class DigestMethodType(GeneratedsSuper):
 
 GDSClassesMapping = {
     'Signature': SignatureType,
-    'consSitMDFe': TConsSitMDFe,
+    'consMDFeNaoEnc': TConsMDFeNaoEnc,
 }
 
 
@@ -2231,8 +2165,8 @@ def parse(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2252,8 +2186,8 @@ def parseEtree(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2280,8 +2214,8 @@ def parseString(inString, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2300,15 +2234,15 @@ def parseLiteral(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'TConsSitMDFe'
-        rootClass = TConsSitMDFe
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
     doc = None
     if not silence:
-        sys.stdout.write('#from consSitMDFe import *\n\n')
-        sys.stdout.write('import consSitMDFe as model_\n\n')
+        sys.stdout.write('#from consMDFeNaoEnc import *\n\n')
+        sys.stdout.write('import consMDFeNaoEnc as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -2337,11 +2271,10 @@ __all__ = [
     "SignatureType",
     "SignatureValueType",
     "SignedInfoType",
-    "TConsSitMDFe",
-    "TRetConsSitMDFe",
+    "TConsMDFeNaoEnc",
+    "TRetConsMDFeNaoEnc",
     "TransformType",
     "TransformsType",
     "X509DataType",
-    "procEventoMDFeType",
-    "protMDFeType"
+    "infMDFeType"
 ]
