@@ -7,6 +7,7 @@ mdfelib.egg-info/dependency_links.txt
 mdfelib.egg-info/not-zip-safe
 mdfelib.egg-info/top_level.txt
 mdfelib/v3_00/__init__.py
+mdfelib/v3_00/consSitMDFe.py
 mdfelib/v3_00/consStatServMDFe.py
 mdfelib/v3_00/enviMDFe.py
 mdfelib/v3_00/generatedsnamespaces.py
