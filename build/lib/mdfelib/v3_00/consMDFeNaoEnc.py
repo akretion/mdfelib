@@ -2,28 +2,30 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue Mar 20 04:00:50 2018 by generateDS.py version 2.28b.
-# Python 3.5.2 (default, Sep 14 2017, 22:51:06)  [GCC 5.4.0 20160609]
+# Generated Thu May 31 02:23:00 2018 by generateDS.py version 2.29.2.
+# Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
-#   ('--no-process-includes', '')
-#   ('-o', 'mdfelib/v3_00/xmldsig-core-schema_v1_01.py')
+#   ('--no-namespace-defs', '')
+#   ('-o', 'mdfelib/v3_00/consMDFeNaoEnc.py')
 #
 # Command line arguments:
-#   schemas/v3_00/xmldsig-core-schema_v1.01.xsd
+#   schemas/v3_00/consMDFeNaoEnc_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS --no-process-includes -o "mdfelib/v3_00/xmldsig-core-schema_v1_01.py" schemas/v3_00/xmldsig-core-schema_v1.01.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/consMDFeNaoEnc.py" schemas/v3_00/consMDFeNaoEnc_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib
 #
 
+from __future__ import unicode_literals
 import sys
 import re as re_
 import base64
 import datetime as datetime_
 import warnings as warnings_
+from builtins import str
 try:
     from lxml import etree as etree_
 except ImportError:
@@ -386,7 +388,7 @@ except ImportError as exp:
             return dict(((v, k) for k, v in mapping.iteritems()))
         @staticmethod
         def gds_encode(instring):
-            if sys.version_info.major == 2:
+            if sys.version_info.major == 2 and not isinstance(instring, unicode):
                 return instring.encode(ExternalEncoding)
             else:
                 return instring
@@ -665,13 +667,15 @@ class MixedContainer:
 
 class MemberSpec_(object):
     def __init__(self, name='', data_type='', container=0,
-            optional=0, child_attrs=None, choice=None):
+                 optional=0, child_attrs=None, choice=None,
+                 documentation=""):
         self.name = name
         self.data_type = data_type
         self.container = container
         self.child_attrs = child_attrs
         self.choice = choice
         self.optional = optional
+        self.documentation = documentation
     def set_name(self, name): self.name = name
     def get_name(self): return self.name
     def set_data_type(self, data_type): self.data_type = data_type
@@ -692,6 +696,7 @@ class MemberSpec_(object):
     def get_choice(self): return self.choice
     def set_optional(self, optional): self.optional = optional
     def get_optional(self): return self.optional
+    def get_documentation(self): return self.documentation
 
 
 def _cast(typ, value):
@@ -702,6 +707,374 @@ def _cast(typ, value):
 #
 # Data representation classes.
 #
+
+
+class TConsMDFeNaoEnc(GeneratedsSuper):
+    """Tipo Pedido de Consulta MDF-e Não Encerrados"""
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, tpAmb=None, xServ=None, CNPJ=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.xServ = xServ
+        self.validate_TServ(self.xServ)
+        self.CNPJ = CNPJ
+        self.validate_TCnpj(self.CNPJ)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, TConsMDFeNaoEnc)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if TConsMDFeNaoEnc.subclass:
+            return TConsMDFeNaoEnc.subclass(*args_, **kwargs_)
+        else:
+            return TConsMDFeNaoEnc(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_xServ(self): return self.xServ
+    def set_xServ(self, xServ): self.xServ = xServ
+    def get_CNPJ(self): return self.CNPJ
+    def set_CNPJ(self, CNPJ): self.CNPJ = CNPJ
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TServ(self, value):
+        # Validate type TServ, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TServ_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TServ_patterns_, ))
+    validate_TServ_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TCnpj(self, value):
+        # Validate type TCnpj, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TCnpj_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TCnpj_patterns_, ))
+    validate_TCnpj_patterns_ = [['^[0-9]{14}$']]
+    def validate_TVerConsMDFeNaoEnc(self, value):
+        # Validate type TVerConsMDFeNaoEnc, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsMDFeNaoEnc_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsMDFeNaoEnc_patterns_, ))
+    validate_TVerConsMDFeNaoEnc_patterns_ = [['^3\\.00$']]
+    def hasContent_(self):
+        if (
+            self.tpAmb is not None or
+            self.xServ is not None or
+            self.CNPJ is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='TConsMDFeNaoEnc', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsMDFeNaoEnc')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TConsMDFeNaoEnc')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TConsMDFeNaoEnc', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TConsMDFeNaoEnc'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TConsMDFeNaoEnc', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.xServ is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xServ>%s</xServ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xServ), input_name='xServ')), eol_))
+        if self.CNPJ is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<CNPJ>%s</CNPJ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.CNPJ), input_name='CNPJ')), eol_))
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerConsMDFeNaoEnc(self.versao)    # validate type TVerConsMDFeNaoEnc
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'xServ':
+            xServ_ = child_.text
+            xServ_ = self.gds_validate_string(xServ_, node, 'xServ')
+            self.xServ = xServ_
+            # validate type TServ
+            self.validate_TServ(self.xServ)
+        elif nodeName_ == 'CNPJ':
+            CNPJ_ = child_.text
+            CNPJ_ = self.gds_validate_string(CNPJ_, node, 'CNPJ')
+            self.CNPJ = CNPJ_
+            # validate type TCnpj
+            self.validate_TCnpj(self.CNPJ)
+# end class TConsMDFeNaoEnc
+
+
+class TRetConsMDFeNaoEnc(GeneratedsSuper):
+    """Tipo Retorno de Pedido de Consulta MDF-e não Encerrados"""
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, infMDFe=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.verAplic = verAplic
+        self.validate_TVerAplic(self.verAplic)
+        self.cStat = cStat
+        self.validate_TStat(self.cStat)
+        self.xMotivo = xMotivo
+        self.validate_TMotivo(self.xMotivo)
+        self.cUF = cUF
+        self.validate_TCodUfIBGE(self.cUF)
+        if infMDFe is None:
+            self.infMDFe = []
+        else:
+            self.infMDFe = infMDFe
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, TRetConsMDFeNaoEnc)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if TRetConsMDFeNaoEnc.subclass:
+            return TRetConsMDFeNaoEnc.subclass(*args_, **kwargs_)
+        else:
+            return TRetConsMDFeNaoEnc(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_verAplic(self): return self.verAplic
+    def set_verAplic(self, verAplic): self.verAplic = verAplic
+    def get_cStat(self): return self.cStat
+    def set_cStat(self, cStat): self.cStat = cStat
+    def get_xMotivo(self): return self.xMotivo
+    def set_xMotivo(self, xMotivo): self.xMotivo = xMotivo
+    def get_cUF(self): return self.cUF
+    def set_cUF(self, cUF): self.cUF = cUF
+    def get_infMDFe(self): return self.infMDFe
+    def set_infMDFe(self, infMDFe): self.infMDFe = infMDFe
+    def add_infMDFe(self, value): self.infMDFe.append(value)
+    def insert_infMDFe_at(self, index, value): self.infMDFe.insert(index, value)
+    def replace_infMDFe_at(self, index, value): self.infMDFe[index] = value
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TVerAplic(self, value):
+        # Validate type TVerAplic, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 20:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TVerAplic' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TVerAplic' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerAplic_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerAplic_patterns_, ))
+    validate_TVerAplic_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TStat(self, value):
+        # Validate type TStat, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TStat_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TStat_patterns_, ))
+    validate_TStat_patterns_ = [['^[0-9]{3}$']]
+    def validate_TMotivo(self, value):
+        # Validate type TMotivo, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 255:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TMotivo' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TMotivo' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TMotivo_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TMotivo_patterns_, ))
+    validate_TMotivo_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TCodUfIBGE(self, value):
+        # Validate type TCodUfIBGE, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : value.encode("utf-8")} )
+    def validate_TVerConsMDFeNaoEnc(self, value):
+        # Validate type TVerConsMDFeNaoEnc, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsMDFeNaoEnc_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsMDFeNaoEnc_patterns_, ))
+    validate_TVerConsMDFeNaoEnc_patterns_ = [['^3\\.00$']]
+    def hasContent_(self):
+        if (
+            self.tpAmb is not None or
+            self.verAplic is not None or
+            self.cStat is not None or
+            self.xMotivo is not None or
+            self.cUF is not None or
+            self.infMDFe
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='TRetConsMDFeNaoEnc', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsMDFeNaoEnc')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetConsMDFeNaoEnc')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetConsMDFeNaoEnc', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetConsMDFeNaoEnc'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TRetConsMDFeNaoEnc', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.verAplic is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<verAplic>%s</verAplic>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.verAplic), input_name='verAplic')), eol_))
+        if self.cStat is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cStat>%s</cStat>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cStat), input_name='cStat')), eol_))
+        if self.xMotivo is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xMotivo>%s</xMotivo>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xMotivo), input_name='xMotivo')), eol_))
+        if self.cUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cUF>%s</cUF>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), eol_))
+        for infMDFe_ in self.infMDFe:
+            infMDFe_.export(outfile, level, namespace_, name_='infMDFe', pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerConsMDFeNaoEnc(self.versao)    # validate type TVerConsMDFeNaoEnc
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'verAplic':
+            verAplic_ = child_.text
+            verAplic_ = self.gds_validate_string(verAplic_, node, 'verAplic')
+            self.verAplic = verAplic_
+            # validate type TVerAplic
+            self.validate_TVerAplic(self.verAplic)
+        elif nodeName_ == 'cStat':
+            cStat_ = child_.text
+            cStat_ = self.gds_validate_string(cStat_, node, 'cStat')
+            self.cStat = cStat_
+            # validate type TStat
+            self.validate_TStat(self.cStat)
+        elif nodeName_ == 'xMotivo':
+            xMotivo_ = child_.text
+            xMotivo_ = self.gds_validate_string(xMotivo_, node, 'xMotivo')
+            self.xMotivo = xMotivo_
+            # validate type TMotivo
+            self.validate_TMotivo(self.xMotivo)
+        elif nodeName_ == 'cUF':
+            cUF_ = child_.text
+            cUF_ = self.gds_validate_string(cUF_, node, 'cUF')
+            self.cUF = cUF_
+            # validate type TCodUfIBGE
+            self.validate_TCodUfIBGE(self.cUF)
+        elif nodeName_ == 'infMDFe':
+            obj_ = infMDFeType.factory()
+            obj_.build(child_)
+            self.infMDFe.append(obj_)
+            obj_.original_tagname_ = 'infMDFe'
+# end class TRetConsMDFeNaoEnc
 
 
 class SignatureType(GeneratedsSuper):
@@ -741,7 +1114,7 @@ class SignatureType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='SignatureType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='SignatureType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -757,16 +1130,16 @@ class SignatureType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignatureType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='SignatureType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignatureType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='SignatureType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignatureType'):
         if self.Id is not None and 'Id' not in already_processed:
             already_processed.add('Id')
-            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='SignatureType', fromsubclass_=False, pretty_print=True):
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignatureType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -832,12 +1205,12 @@ class SignatureValueType(GeneratedsSuper):
     def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def hasContent_(self):
         if (
-            1 if type(self.valueOf_) in [int,float] else self.valueOf_
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='SignatureValueType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='SignatureValueType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureValueType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -854,15 +1227,15 @@ class SignatureValueType(GeneratedsSuper):
         if self.hasContent_():
             outfile.write('>')
             outfile.write(self.convert_unicode(self.valueOf_))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='SignatureValueType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignatureValueType', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='SignatureValueType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignatureValueType'):
         if self.Id is not None and 'Id' not in already_processed:
             already_processed.add('Id')
-            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='SignatureValueType', fromsubclass_=False, pretty_print=True):
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignatureValueType', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node):
         already_processed = set()
@@ -919,7 +1292,7 @@ class SignedInfoType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='SignedInfoType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='SignedInfoType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignedInfoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -935,16 +1308,16 @@ class SignedInfoType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignedInfoType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='SignedInfoType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignedInfoType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='SignedInfoType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignedInfoType'):
         if self.Id is not None and 'Id' not in already_processed:
             already_processed.add('Id')
-            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='SignedInfoType', fromsubclass_=False, pretty_print=True):
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignedInfoType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -969,12 +1342,12 @@ class SignedInfoType(GeneratedsSuper):
             self.Id = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'CanonicalizationMethod':
-            obj_ = CanonicalizationMethod.factory()
+            obj_ = CanonicalizationMethodType.factory()
             obj_.build(child_)
             self.CanonicalizationMethod = obj_
             obj_.original_tagname_ = 'CanonicalizationMethod'
         elif nodeName_ == 'SignatureMethod':
-            obj_ = SignatureMethod.factory()
+            obj_ = SignatureMethodType.factory()
             obj_.build(child_)
             self.SignatureMethod = obj_
             obj_.original_tagname_ = 'SignatureMethod'
@@ -984,144 +1357,6 @@ class SignedInfoType(GeneratedsSuper):
             self.Reference = obj_
             obj_.original_tagname_ = 'Reference'
 # end class SignedInfoType
-
-
-class CanonicalizationMethod(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, Algorithm=None):
-        self.original_tagname_ = None
-        self.Algorithm = _cast(None, Algorithm)
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, CanonicalizationMethod)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if CanonicalizationMethod.subclass:
-            return CanonicalizationMethod.subclass(*args_, **kwargs_)
-        else:
-            return CanonicalizationMethod(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_Algorithm(self): return self.Algorithm
-    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='ds:', name_='CanonicalizationMethod', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('CanonicalizationMethod')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='CanonicalizationMethod')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='CanonicalizationMethod', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='CanonicalizationMethod'):
-        if self.Algorithm is not None and 'Algorithm' not in already_processed:
-            already_processed.add('Algorithm')
-            outfile.write(' Algorithm=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Algorithm), input_name='Algorithm')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='CanonicalizationMethod', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('Algorithm', node)
-        if value is not None and 'Algorithm' not in already_processed:
-            already_processed.add('Algorithm')
-            self.Algorithm = value
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class CanonicalizationMethod
-
-
-class SignatureMethod(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, Algorithm=None):
-        self.original_tagname_ = None
-        self.Algorithm = _cast(None, Algorithm)
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, SignatureMethod)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if SignatureMethod.subclass:
-            return SignatureMethod.subclass(*args_, **kwargs_)
-        else:
-            return SignatureMethod(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_Algorithm(self): return self.Algorithm
-    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='ds:', name_='SignatureMethod', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureMethod')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignatureMethod')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='SignatureMethod', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='SignatureMethod'):
-        if self.Algorithm is not None and 'Algorithm' not in already_processed:
-            already_processed.add('Algorithm')
-            outfile.write(' Algorithm=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Algorithm), input_name='Algorithm')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='SignatureMethod', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('Algorithm', node)
-        if value is not None and 'Algorithm' not in already_processed:
-            already_processed.add('Algorithm')
-            self.Algorithm = value
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class SignatureMethod
 
 
 class ReferenceType(GeneratedsSuper):
@@ -1161,7 +1396,8 @@ class ReferenceType(GeneratedsSuper):
     def set_Type(self, Type): self.Type = Type
     def validate_DigestValueType(self, value):
         # Validate type DigestValueType, a restriction on base64Binary.
-        pass
+        if value is not None and Validate_simpletypes_:
+            pass
     def hasContent_(self):
         if (
             self.Transforms is not None or
@@ -1171,7 +1407,7 @@ class ReferenceType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='ReferenceType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='ReferenceType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('ReferenceType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -1187,22 +1423,22 @@ class ReferenceType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='ReferenceType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='ReferenceType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='ReferenceType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='ReferenceType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='ReferenceType'):
         if self.Id is not None and 'Id' not in already_processed:
             already_processed.add('Id')
-            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
         if self.URI is not None and 'URI' not in already_processed:
             already_processed.add('URI')
-            outfile.write(' URI=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.URI), input_name='URI')), ))
+            outfile.write(' URI=%s' % (quote_attrib(self.URI), ))
         if self.Type is not None and 'Type' not in already_processed:
             already_processed.add('Type')
-            outfile.write(' Type=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Type), input_name='Type')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='ReferenceType', fromsubclass_=False, pretty_print=True):
+            outfile.write(' Type=%s' % (quote_attrib(self.Type), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='ReferenceType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -1213,7 +1449,7 @@ class ReferenceType(GeneratedsSuper):
             self.DigestMethod.export(outfile, level, namespace_, name_='DigestMethod', pretty_print=pretty_print)
         if self.DigestValue is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sDigestValue>%s</%sDigestValue>%s' % (namespace_, self.gds_format_base64(self.DigestValue, input_name='DigestValue'), namespace_, eol_))
+            outfile.write('<DigestValue>%s</DigestValue>%s' % (self.gds_format_base64(self.DigestValue, input_name='DigestValue'), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1241,7 +1477,7 @@ class ReferenceType(GeneratedsSuper):
             self.Transforms = obj_
             obj_.original_tagname_ = 'Transforms'
         elif nodeName_ == 'DigestMethod':
-            obj_ = DigestMethod.factory()
+            obj_ = DigestMethodType.factory()
             obj_.build(child_)
             self.DigestMethod = obj_
             obj_.original_tagname_ = 'DigestMethod'
@@ -1259,75 +1495,6 @@ class ReferenceType(GeneratedsSuper):
             # validate type DigestValueType
             self.validate_DigestValueType(self.DigestValue)
 # end class ReferenceType
-
-
-class DigestMethod(GeneratedsSuper):
-    subclass = None
-    superclass = None
-    def __init__(self, Algorithm=None):
-        self.original_tagname_ = None
-        self.Algorithm = _cast(None, Algorithm)
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, DigestMethod)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if DigestMethod.subclass:
-            return DigestMethod.subclass(*args_, **kwargs_)
-        else:
-            return DigestMethod(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_Algorithm(self): return self.Algorithm
-    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='ds:', name_='DigestMethod', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('DigestMethod')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='DigestMethod')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='DigestMethod', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='DigestMethod'):
-        if self.Algorithm is not None and 'Algorithm' not in already_processed:
-            already_processed.add('Algorithm')
-            outfile.write(' Algorithm=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Algorithm), input_name='Algorithm')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='DigestMethod', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        value = find_attr_value_('Algorithm', node)
-        if value is not None and 'Algorithm' not in already_processed:
-            already_processed.add('Algorithm')
-            self.Algorithm = value
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class DigestMethod
 
 
 class TransformsType(GeneratedsSuper):
@@ -1362,7 +1529,7 @@ class TransformsType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='TransformsType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='TransformsType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('TransformsType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -1378,14 +1545,14 @@ class TransformsType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='TransformsType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='TransformsType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TransformsType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='TransformsType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TransformsType'):
         pass
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='TransformsType', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TransformsType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -1445,7 +1612,7 @@ class TransformType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='TransformType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='TransformType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('TransformType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -1461,23 +1628,23 @@ class TransformType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='TransformType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='TransformType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TransformType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='TransformType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TransformType'):
         if self.Algorithm is not None and 'Algorithm' not in already_processed:
             already_processed.add('Algorithm')
             outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='TransformType', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TransformType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
         for XPath_ in self.XPath:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sXPath>%s</%sXPath>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(XPath_), input_name='XPath')), namespace_, eol_))
+            outfile.write('<XPath>%s</XPath>%s' % (self.gds_encode(self.gds_format_string(quote_xml(XPath_), input_name='XPath')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1527,7 +1694,7 @@ class KeyInfoType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='KeyInfoType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='KeyInfoType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('KeyInfoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -1543,16 +1710,16 @@ class KeyInfoType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='KeyInfoType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='KeyInfoType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='KeyInfoType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='KeyInfoType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='KeyInfoType'):
         if self.Id is not None and 'Id' not in already_processed:
             already_processed.add('Id')
-            outfile.write(' Id=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.Id), input_name='Id')), ))
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='KeyInfoType', fromsubclass_=False, pretty_print=True):
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='KeyInfoType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
@@ -1606,7 +1773,7 @@ class X509DataType(GeneratedsSuper):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='ds:', name_='X509DataType', namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"', pretty_print=True):
+    def export(self, outfile, level, namespace_='', name_='X509DataType', namespacedef_='', pretty_print=True):
         imported_ns_def_ = GenerateDSNamespaceDefs_.get('X509DataType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
@@ -1622,21 +1789,21 @@ class X509DataType(GeneratedsSuper):
         self.exportAttributes(outfile, level, already_processed, namespace_, name_='X509DataType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='ds:', name_='X509DataType', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='X509DataType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='ds:', name_='X509DataType'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='X509DataType'):
         pass
-    def exportChildren(self, outfile, level, namespace_='ds:', name_='X509DataType', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='X509DataType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
         if self.X509Certificate is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sX509Certificate>%s</%sX509Certificate>%s' % (namespace_, self.gds_format_base64(self.X509Certificate, input_name='X509Certificate'), namespace_, eol_))
+            outfile.write('<X509Certificate>%s</X509Certificate>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.X509Certificate), input_name='X509Certificate')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1648,28 +1815,329 @@ class X509DataType(GeneratedsSuper):
         pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'X509Certificate':
-            sval_ = child_.text
-            if sval_ is not None:
-                try:
-                    bval_ = base64.b64decode(sval_)
-                except (TypeError, ValueError) as exp:
-                    raise_parse_error(child_, 'requires base64 encoded string: %s' % exp)
-                bval_ = self.gds_validate_base64(bval_, node, 'X509Certificate')
-            else:
-                bval_ = None
-            self.X509Certificate = bval_
+            X509Certificate_ = child_.text
+            X509Certificate_ = self.gds_validate_string(X509Certificate_, node, 'X509Certificate')
+            self.X509Certificate = X509Certificate_
 # end class X509DataType
 
 
+class infMDFeType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, chMDFe=None, nProt=None):
+        self.original_tagname_ = None
+        self.chMDFe = chMDFe
+        self.validate_TChMDFe(self.chMDFe)
+        self.nProt = nProt
+        self.validate_TProt(self.nProt)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, infMDFeType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if infMDFeType.subclass:
+            return infMDFeType.subclass(*args_, **kwargs_)
+        else:
+            return infMDFeType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_chMDFe(self): return self.chMDFe
+    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_nProt(self): return self.nProt
+    def set_nProt(self, nProt): self.nProt = nProt
+    def validate_TChMDFe(self, value):
+        # Validate type TChMDFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if len(value) > 44:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChMDFe' % {"value" : value.encode("utf-8")} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TChMDFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChMDFe_patterns_, ))
+    validate_TChMDFe_patterns_ = [['^[0-9]{44}$']]
+    def validate_TProt(self, value):
+        # Validate type TProt, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TProt_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TProt_patterns_, ))
+    validate_TProt_patterns_ = [['^[0-9]{15}$']]
+    def hasContent_(self):
+        if (
+            self.chMDFe is not None or
+            self.nProt is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='infMDFeType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infMDFeType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infMDFeType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='infMDFeType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infMDFeType'):
+        pass
+    def exportChildren(self, outfile, level, namespace_='', name_='infMDFeType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.chMDFe is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
+        if self.nProt is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<nProt>%s</nProt>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.nProt), input_name='nProt')), eol_))
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        pass
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'chMDFe':
+            chMDFe_ = child_.text
+            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
+            self.chMDFe = chMDFe_
+            # validate type TChMDFe
+            self.validate_TChMDFe(self.chMDFe)
+        elif nodeName_ == 'nProt':
+            nProt_ = child_.text
+            nProt_ = self.gds_validate_string(nProt_, node, 'nProt')
+            self.nProt = nProt_
+            # validate type TProt
+            self.validate_TProt(self.nProt)
+# end class infMDFeType
+
+
+class CanonicalizationMethodType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Algorithm=None):
+        self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, CanonicalizationMethodType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if CanonicalizationMethodType.subclass:
+            return CanonicalizationMethodType.subclass(*args_, **kwargs_)
+        else:
+            return CanonicalizationMethodType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
+    def hasContent_(self):
+        if (
+
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='CanonicalizationMethodType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('CanonicalizationMethodType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='CanonicalizationMethodType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='CanonicalizationMethodType', pretty_print=pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='CanonicalizationMethodType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='CanonicalizationMethodType', fromsubclass_=False, pretty_print=True):
+        pass
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        pass
+# end class CanonicalizationMethodType
+
+
+class SignatureMethodType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Algorithm=None):
+        self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, SignatureMethodType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if SignatureMethodType.subclass:
+            return SignatureMethodType.subclass(*args_, **kwargs_)
+        else:
+            return SignatureMethodType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
+    def hasContent_(self):
+        if (
+
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='SignatureMethodType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureMethodType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignatureMethodType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignatureMethodType', pretty_print=pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignatureMethodType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignatureMethodType', fromsubclass_=False, pretty_print=True):
+        pass
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        pass
+# end class SignatureMethodType
+
+
+class DigestMethodType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Algorithm=None):
+        self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, DigestMethodType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if DigestMethodType.subclass:
+            return DigestMethodType.subclass(*args_, **kwargs_)
+        else:
+            return DigestMethodType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
+    def hasContent_(self):
+        if (
+
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='DigestMethodType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('DigestMethodType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='DigestMethodType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='DigestMethodType', pretty_print=pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='DigestMethodType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='DigestMethodType', fromsubclass_=False, pretty_print=True):
+        pass
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        pass
+# end class DigestMethodType
+
+
 GDSClassesMapping = {
-    'KeyInfo': KeyInfoType,
-    'Reference': ReferenceType,
     'Signature': SignatureType,
-    'SignatureValue': SignatureValueType,
-    'SignedInfo': SignedInfoType,
-    'Transform': TransformType,
-    'Transforms': TransformsType,
-    'X509Data': X509DataType,
+    'consMDFeNaoEnc': TConsMDFeNaoEnc,
 }
 
 
@@ -1697,8 +2165,8 @@ def parse(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'SignatureType'
-        rootClass = SignatureType
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -1707,7 +2175,7 @@ def parse(inFileName, silence=False):
         sys.stdout.write('<?xml version="1.0" ?>\n')
         rootObj.export(
             sys.stdout, 0, name_=rootTag,
-            namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"',
+            namespacedef_='',
             pretty_print=True)
     return rootObj
 
@@ -1718,8 +2186,8 @@ def parseEtree(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'SignatureType'
-        rootClass = SignatureType
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -1746,8 +2214,8 @@ def parseString(inString, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'SignatureType'
-        rootClass = SignatureType
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -1756,7 +2224,7 @@ def parseString(inString, silence=False):
         sys.stdout.write('<?xml version="1.0" ?>\n')
         rootObj.export(
             sys.stdout, 0, name_=rootTag,
-            namespacedef_='xmlns:ds="http://www.w3.org/2000/09/xmldsig#"')
+            namespacedef_='')
     return rootObj
 
 
@@ -1766,15 +2234,15 @@ def parseLiteral(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'SignatureType'
-        rootClass = SignatureType
+        rootTag = 'TConsMDFeNaoEnc'
+        rootClass = TConsMDFeNaoEnc
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
     doc = None
     if not silence:
-        sys.stdout.write('#from xmldsig-core-schema_v1_01 import *\n\n')
-        sys.stdout.write('import xmldsig-core-schema_v1_01 as model_\n\n')
+        sys.stdout.write('#from consMDFeNaoEnc import *\n\n')
+        sys.stdout.write('import consMDFeNaoEnc as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -1795,12 +2263,18 @@ if __name__ == '__main__':
 
 
 __all__ = [
+    "CanonicalizationMethodType",
+    "DigestMethodType",
     "KeyInfoType",
     "ReferenceType",
+    "SignatureMethodType",
     "SignatureType",
     "SignatureValueType",
     "SignedInfoType",
+    "TConsMDFeNaoEnc",
+    "TRetConsMDFeNaoEnc",
     "TransformType",
     "TransformsType",
-    "X509DataType"
+    "X509DataType",
+    "infMDFeType"
 ]

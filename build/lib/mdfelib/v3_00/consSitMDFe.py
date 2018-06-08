@@ -2,28 +2,30 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue Mar 20 04:00:46 2018 by generateDS.py version 2.28b.
-# Python 3.5.2 (default, Sep 14 2017, 22:51:06)  [GCC 5.4.0 20160609]
+# Generated Thu May 31 02:23:00 2018 by generateDS.py version 2.29.2.
+# Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
-#   ('--no-process-includes', '')
-#   ('-o', 'mdfelib/v3_00/mdfeModalAquaviario.py')
+#   ('--no-namespace-defs', '')
+#   ('-o', 'mdfelib/v3_00/consSitMDFe.py')
 #
 # Command line arguments:
-#   schemas/v3_00/mdfeModalAquaviario_v3.00.xsd
+#   schemas/v3_00/consSitMDFe_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS --no-process-includes -o "mdfelib/v3_00/mdfeModalAquaviario.py" schemas/v3_00/mdfeModalAquaviario_v3.00.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/consSitMDFe.py" schemas/v3_00/consSitMDFe_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib
 #
 
+from __future__ import unicode_literals
 import sys
 import re as re_
 import base64
 import datetime as datetime_
 import warnings as warnings_
+from builtins import str
 try:
     from lxml import etree as etree_
 except ImportError:
@@ -386,7 +388,7 @@ except ImportError as exp:
             return dict(((v, k) for k, v in mapping.iteritems()))
         @staticmethod
         def gds_encode(instring):
-            if sys.version_info.major == 2:
+            if sys.version_info.major == 2 and not isinstance(instring, unicode):
                 return instring.encode(ExternalEncoding)
             else:
                 return instring
@@ -665,13 +667,15 @@ class MixedContainer:
 
 class MemberSpec_(object):
     def __init__(self, name='', data_type='', container=0,
-            optional=0, child_attrs=None, choice=None):
+                 optional=0, child_attrs=None, choice=None,
+                 documentation=""):
         self.name = name
         self.data_type = data_type
         self.container = container
         self.child_attrs = child_attrs
         self.choice = choice
         self.optional = optional
+        self.documentation = documentation
     def set_name(self, name): self.name = name
     def get_name(self): return self.name
     def set_data_type(self, data_type): self.data_type = data_type
@@ -692,6 +696,7 @@ class MemberSpec_(object):
     def get_choice(self): return self.choice
     def set_optional(self, optional): self.optional = optional
     def get_optional(self): return self.optional
+    def get_documentation(self): return self.documentation
 
 
 def _cast(typ, value):
@@ -704,117 +709,84 @@ def _cast(typ, value):
 #
 
 
-class aquav(GeneratedsSuper):
-    """Informações do modal Aquaviário"""
+class TConsSitMDFe(GeneratedsSuper):
+    """Tipo Pedido de Consulta da Situação Atual do MDF-e"""
     subclass = None
     superclass = None
-    def __init__(self, irin=None, tpEmb=None, cEmbar=None, xEmbar=None, nViag=None, cPrtEmb=None, cPrtDest=None, prtTrans=None, tpNav=None, infTermCarreg=None, infTermDescarreg=None, infEmbComb=None, infUnidCargaVazia=None, infUnidTranspVazia=None):
+    def __init__(self, versao=None, tpAmb=None, xServ=None, chMDFe=None):
         self.original_tagname_ = None
-        self.irin = irin
-        self.tpEmb = tpEmb
-        self.cEmbar = cEmbar
-        self.xEmbar = xEmbar
-        self.nViag = nViag
-        self.cPrtEmb = cPrtEmb
-        self.cPrtDest = cPrtDest
-        self.prtTrans = prtTrans
-        self.tpNav = tpNav
-        if infTermCarreg is None:
-            self.infTermCarreg = []
-        else:
-            self.infTermCarreg = infTermCarreg
-        if infTermDescarreg is None:
-            self.infTermDescarreg = []
-        else:
-            self.infTermDescarreg = infTermDescarreg
-        if infEmbComb is None:
-            self.infEmbComb = []
-        else:
-            self.infEmbComb = infEmbComb
-        if infUnidCargaVazia is None:
-            self.infUnidCargaVazia = []
-        else:
-            self.infUnidCargaVazia = infUnidCargaVazia
-        if infUnidTranspVazia is None:
-            self.infUnidTranspVazia = []
-        else:
-            self.infUnidTranspVazia = infUnidTranspVazia
+        self.versao = _cast(None, versao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.xServ = xServ
+        self.validate_TServ(self.xServ)
+        self.chMDFe = chMDFe
+        self.validate_TChNFe(self.chMDFe)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, aquav)
+                CurrentSubclassModule_, TConsSitMDFe)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if aquav.subclass:
-            return aquav.subclass(*args_, **kwargs_)
+        if TConsSitMDFe.subclass:
+            return TConsSitMDFe.subclass(*args_, **kwargs_)
         else:
-            return aquav(*args_, **kwargs_)
+            return TConsSitMDFe(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_irin(self): return self.irin
-    def set_irin(self, irin): self.irin = irin
-    def get_tpEmb(self): return self.tpEmb
-    def set_tpEmb(self, tpEmb): self.tpEmb = tpEmb
-    def get_cEmbar(self): return self.cEmbar
-    def set_cEmbar(self, cEmbar): self.cEmbar = cEmbar
-    def get_xEmbar(self): return self.xEmbar
-    def set_xEmbar(self, xEmbar): self.xEmbar = xEmbar
-    def get_nViag(self): return self.nViag
-    def set_nViag(self, nViag): self.nViag = nViag
-    def get_cPrtEmb(self): return self.cPrtEmb
-    def set_cPrtEmb(self, cPrtEmb): self.cPrtEmb = cPrtEmb
-    def get_cPrtDest(self): return self.cPrtDest
-    def set_cPrtDest(self, cPrtDest): self.cPrtDest = cPrtDest
-    def get_prtTrans(self): return self.prtTrans
-    def set_prtTrans(self, prtTrans): self.prtTrans = prtTrans
-    def get_tpNav(self): return self.tpNav
-    def set_tpNav(self, tpNav): self.tpNav = tpNav
-    def get_infTermCarreg(self): return self.infTermCarreg
-    def set_infTermCarreg(self, infTermCarreg): self.infTermCarreg = infTermCarreg
-    def add_infTermCarreg(self, value): self.infTermCarreg.append(value)
-    def insert_infTermCarreg_at(self, index, value): self.infTermCarreg.insert(index, value)
-    def replace_infTermCarreg_at(self, index, value): self.infTermCarreg[index] = value
-    def get_infTermDescarreg(self): return self.infTermDescarreg
-    def set_infTermDescarreg(self, infTermDescarreg): self.infTermDescarreg = infTermDescarreg
-    def add_infTermDescarreg(self, value): self.infTermDescarreg.append(value)
-    def insert_infTermDescarreg_at(self, index, value): self.infTermDescarreg.insert(index, value)
-    def replace_infTermDescarreg_at(self, index, value): self.infTermDescarreg[index] = value
-    def get_infEmbComb(self): return self.infEmbComb
-    def set_infEmbComb(self, infEmbComb): self.infEmbComb = infEmbComb
-    def add_infEmbComb(self, value): self.infEmbComb.append(value)
-    def insert_infEmbComb_at(self, index, value): self.infEmbComb.insert(index, value)
-    def replace_infEmbComb_at(self, index, value): self.infEmbComb[index] = value
-    def get_infUnidCargaVazia(self): return self.infUnidCargaVazia
-    def set_infUnidCargaVazia(self, infUnidCargaVazia): self.infUnidCargaVazia = infUnidCargaVazia
-    def add_infUnidCargaVazia(self, value): self.infUnidCargaVazia.append(value)
-    def insert_infUnidCargaVazia_at(self, index, value): self.infUnidCargaVazia.insert(index, value)
-    def replace_infUnidCargaVazia_at(self, index, value): self.infUnidCargaVazia[index] = value
-    def get_infUnidTranspVazia(self): return self.infUnidTranspVazia
-    def set_infUnidTranspVazia(self, infUnidTranspVazia): self.infUnidTranspVazia = infUnidTranspVazia
-    def add_infUnidTranspVazia(self, value): self.infUnidTranspVazia.append(value)
-    def insert_infUnidTranspVazia_at(self, index, value): self.infUnidTranspVazia.insert(index, value)
-    def replace_infUnidTranspVazia_at(self, index, value): self.infUnidTranspVazia[index] = value
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_xServ(self): return self.xServ
+    def set_xServ(self, xServ): self.xServ = xServ
+    def get_chMDFe(self): return self.chMDFe
+    def set_chMDFe(self, chMDFe): self.chMDFe = chMDFe
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TServ(self, value):
+        # Validate type TServ, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TServ_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TServ_patterns_, ))
+    validate_TServ_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TChNFe(self, value):
+        # Validate type TChNFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if len(value) > 44:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TChNFe' % {"value" : value.encode("utf-8")} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TChNFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TChNFe_patterns_, ))
+    validate_TChNFe_patterns_ = [['^[0-9]{44}$']]
+    def validate_TVerConsSitMDFe(self, value):
+        # Validate type TVerConsSitMDFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsSitMDFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsSitMDFe_patterns_, ))
+    validate_TVerConsSitMDFe_patterns_ = [['^3\\.00$']]
     def hasContent_(self):
         if (
-            self.irin is not None or
-            self.tpEmb is not None or
-            self.cEmbar is not None or
-            self.xEmbar is not None or
-            self.nViag is not None or
-            self.cPrtEmb is not None or
-            self.cPrtDest is not None or
-            self.prtTrans is not None or
-            self.tpNav is not None or
-            self.infTermCarreg or
-            self.infTermDescarreg or
-            self.infEmbComb or
-            self.infUnidCargaVazia or
-            self.infUnidTranspVazia
+            self.tpAmb is not None or
+            self.xServ is not None or
+            self.chMDFe is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='aquav', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('aquav')
+    def export(self, outfile, level, namespace_='', name_='TConsSitMDFe', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsSitMDFe')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -826,53 +798,32 @@ class aquav(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='aquav')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TConsSitMDFe')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='aquav', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TConsSitMDFe', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='aquav'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='aquav', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TConsSitMDFe'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TConsSitMDFe', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.irin is not None:
+        if self.tpAmb is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sirin>%s</%sirin>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(self.irin), input_name='irin')), namespace_, eol_))
-        if self.tpEmb is not None:
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.xServ is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%stpEmb>%s</%stpEmb>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(self.tpEmb), input_name='tpEmb')), namespace_, eol_))
-        if self.cEmbar is not None:
-            self.cEmbar.export(outfile, level, namespace_, name_='cEmbar', pretty_print=pretty_print)
-        if self.xEmbar is not None:
-            self.xEmbar.export(outfile, level, namespace_, name_='xEmbar', pretty_print=pretty_print)
-        if self.nViag is not None:
+            outfile.write('<xServ>%s</xServ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xServ), input_name='xServ')), eol_))
+        if self.chMDFe is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%snViag>%s</%snViag>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(self.nViag), input_name='nViag')), namespace_, eol_))
-        if self.cPrtEmb is not None:
-            self.cPrtEmb.export(outfile, level, namespace_, name_='cPrtEmb', pretty_print=pretty_print)
-        if self.cPrtDest is not None:
-            self.cPrtDest.export(outfile, level, namespace_, name_='cPrtDest', pretty_print=pretty_print)
-        if self.prtTrans is not None:
-            self.prtTrans.export(outfile, level, namespace_, name_='prtTrans', pretty_print=pretty_print)
-        if self.tpNav is not None:
-            showIndent(outfile, level, pretty_print)
-            outfile.write('<%stpNav>%s</%stpNav>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(self.tpNav), input_name='tpNav')), namespace_, eol_))
-        for infTermCarreg_ in self.infTermCarreg:
-            infTermCarreg_.export(outfile, level, namespace_, name_='infTermCarreg', pretty_print=pretty_print)
-        for infTermDescarreg_ in self.infTermDescarreg:
-            infTermDescarreg_.export(outfile, level, namespace_, name_='infTermDescarreg', pretty_print=pretty_print)
-        for infEmbComb_ in self.infEmbComb:
-            infEmbComb_.export(outfile, level, namespace_, name_='infEmbComb', pretty_print=pretty_print)
-        for infUnidCargaVazia_ in self.infUnidCargaVazia:
-            infUnidCargaVazia_.export(outfile, level, namespace_, name_='infUnidCargaVazia', pretty_print=pretty_print)
-        for infUnidTranspVazia_ in self.infUnidTranspVazia:
-            infUnidTranspVazia_.export(outfile, level, namespace_, name_='infUnidTranspVazia', pretty_print=pretty_print)
+            outfile.write('<chMDFe>%s</chMDFe>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.chMDFe), input_name='chMDFe')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -881,98 +832,399 @@ class aquav(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerConsSitMDFe(self.versao)    # validate type TVerConsSitMDFe
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'irin':
-            irin_ = child_.text
-            irin_ = self.gds_validate_string(irin_, node, 'irin')
-            self.irin = irin_
-        elif nodeName_ == 'tpEmb':
-            tpEmb_ = child_.text
-            tpEmb_ = self.gds_validate_string(tpEmb_, node, 'tpEmb')
-            self.tpEmb = tpEmb_
-        elif nodeName_ == 'cEmbar':
-            obj_ = None
-            self.cEmbar = obj_
-            obj_.original_tagname_ = 'cEmbar'
-        elif nodeName_ == 'xEmbar':
-            obj_ = None
-            self.xEmbar = obj_
-            obj_.original_tagname_ = 'xEmbar'
-        elif nodeName_ == 'nViag':
-            nViag_ = child_.text
-            nViag_ = self.gds_validate_string(nViag_, node, 'nViag')
-            self.nViag = nViag_
-        elif nodeName_ == 'cPrtEmb':
-            obj_ = None
-            self.cPrtEmb = obj_
-            obj_.original_tagname_ = 'cPrtEmb'
-        elif nodeName_ == 'cPrtDest':
-            obj_ = None
-            self.cPrtDest = obj_
-            obj_.original_tagname_ = 'cPrtDest'
-        elif nodeName_ == 'prtTrans':
-            obj_ = None
-            self.prtTrans = obj_
-            obj_.original_tagname_ = 'prtTrans'
-        elif nodeName_ == 'tpNav':
-            tpNav_ = child_.text
-            tpNav_ = self.gds_validate_string(tpNav_, node, 'tpNav')
-            self.tpNav = tpNav_
-        elif nodeName_ == 'infTermCarreg':
-            obj_ = infTermCarreg.factory()
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'xServ':
+            xServ_ = child_.text
+            xServ_ = self.gds_validate_string(xServ_, node, 'xServ')
+            self.xServ = xServ_
+            # validate type TServ
+            self.validate_TServ(self.xServ)
+        elif nodeName_ == 'chMDFe':
+            chMDFe_ = child_.text
+            chMDFe_ = self.gds_validate_string(chMDFe_, node, 'chMDFe')
+            self.chMDFe = chMDFe_
+            # validate type TChNFe
+            self.validate_TChNFe(self.chMDFe)
+# end class TConsSitMDFe
+
+
+class TRetConsSitMDFe(GeneratedsSuper):
+    """Tipo Retorno de Pedido de Consulta da Situação Atual do MDF-e"""
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, protMDFe=None, procEventoMDFe=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.verAplic = verAplic
+        self.validate_TVerAplic(self.verAplic)
+        self.cStat = cStat
+        self.validate_TStat(self.cStat)
+        self.xMotivo = xMotivo
+        self.validate_TMotivo(self.xMotivo)
+        self.cUF = cUF
+        self.validate_TCodUfIBGE(self.cUF)
+        self.protMDFe = protMDFe
+        if procEventoMDFe is None:
+            self.procEventoMDFe = []
+        else:
+            self.procEventoMDFe = procEventoMDFe
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, TRetConsSitMDFe)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if TRetConsSitMDFe.subclass:
+            return TRetConsSitMDFe.subclass(*args_, **kwargs_)
+        else:
+            return TRetConsSitMDFe(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_verAplic(self): return self.verAplic
+    def set_verAplic(self, verAplic): self.verAplic = verAplic
+    def get_cStat(self): return self.cStat
+    def set_cStat(self, cStat): self.cStat = cStat
+    def get_xMotivo(self): return self.xMotivo
+    def set_xMotivo(self, xMotivo): self.xMotivo = xMotivo
+    def get_cUF(self): return self.cUF
+    def set_cUF(self, cUF): self.cUF = cUF
+    def get_protMDFe(self): return self.protMDFe
+    def set_protMDFe(self, protMDFe): self.protMDFe = protMDFe
+    def get_procEventoMDFe(self): return self.procEventoMDFe
+    def set_procEventoMDFe(self, procEventoMDFe): self.procEventoMDFe = procEventoMDFe
+    def add_procEventoMDFe(self, value): self.procEventoMDFe.append(value)
+    def insert_procEventoMDFe_at(self, index, value): self.procEventoMDFe.insert(index, value)
+    def replace_procEventoMDFe_at(self, index, value): self.procEventoMDFe[index] = value
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TVerAplic(self, value):
+        # Validate type TVerAplic, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 20:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TVerAplic' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TVerAplic' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerAplic_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerAplic_patterns_, ))
+    validate_TVerAplic_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TStat(self, value):
+        # Validate type TStat, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TStat_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TStat_patterns_, ))
+    validate_TStat_patterns_ = [['^[0-9]{3}$']]
+    def validate_TMotivo(self, value):
+        # Validate type TMotivo, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 255:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TMotivo' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TMotivo' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TMotivo_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TMotivo_patterns_, ))
+    validate_TMotivo_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TCodUfIBGE(self, value):
+        # Validate type TCodUfIBGE, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : value.encode("utf-8")} )
+    def validate_TVerConsSitMDFe(self, value):
+        # Validate type TVerConsSitMDFe, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsSitMDFe_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsSitMDFe_patterns_, ))
+    validate_TVerConsSitMDFe_patterns_ = [['^3\\.00$']]
+    def hasContent_(self):
+        if (
+            self.tpAmb is not None or
+            self.verAplic is not None or
+            self.cStat is not None or
+            self.xMotivo is not None or
+            self.cUF is not None or
+            self.protMDFe is not None or
+            self.procEventoMDFe
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='TRetConsSitMDFe', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsSitMDFe')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetConsSitMDFe')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetConsSitMDFe', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetConsSitMDFe'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TRetConsSitMDFe', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.verAplic is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<verAplic>%s</verAplic>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.verAplic), input_name='verAplic')), eol_))
+        if self.cStat is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cStat>%s</cStat>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cStat), input_name='cStat')), eol_))
+        if self.xMotivo is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xMotivo>%s</xMotivo>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xMotivo), input_name='xMotivo')), eol_))
+        if self.cUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cUF>%s</cUF>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), eol_))
+        if self.protMDFe is not None:
+            self.protMDFe.export(outfile, level, namespace_, name_='protMDFe', pretty_print=pretty_print)
+        for procEventoMDFe_ in self.procEventoMDFe:
+            procEventoMDFe_.export(outfile, level, namespace_, name_='procEventoMDFe', pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerConsSitMDFe(self.versao)    # validate type TVerConsSitMDFe
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'verAplic':
+            verAplic_ = child_.text
+            verAplic_ = self.gds_validate_string(verAplic_, node, 'verAplic')
+            self.verAplic = verAplic_
+            # validate type TVerAplic
+            self.validate_TVerAplic(self.verAplic)
+        elif nodeName_ == 'cStat':
+            cStat_ = child_.text
+            cStat_ = self.gds_validate_string(cStat_, node, 'cStat')
+            self.cStat = cStat_
+            # validate type TStat
+            self.validate_TStat(self.cStat)
+        elif nodeName_ == 'xMotivo':
+            xMotivo_ = child_.text
+            xMotivo_ = self.gds_validate_string(xMotivo_, node, 'xMotivo')
+            self.xMotivo = xMotivo_
+            # validate type TMotivo
+            self.validate_TMotivo(self.xMotivo)
+        elif nodeName_ == 'cUF':
+            cUF_ = child_.text
+            cUF_ = self.gds_validate_string(cUF_, node, 'cUF')
+            self.cUF = cUF_
+            # validate type TCodUfIBGE
+            self.validate_TCodUfIBGE(self.cUF)
+        elif nodeName_ == 'protMDFe':
+            obj_ = protMDFeType.factory()
             obj_.build(child_)
-            self.infTermCarreg.append(obj_)
-            obj_.original_tagname_ = 'infTermCarreg'
-        elif nodeName_ == 'infTermDescarreg':
-            obj_ = infTermDescarreg.factory()
+            self.protMDFe = obj_
+            obj_.original_tagname_ = 'protMDFe'
+        elif nodeName_ == 'procEventoMDFe':
+            obj_ = procEventoMDFeType.factory()
             obj_.build(child_)
-            self.infTermDescarreg.append(obj_)
-            obj_.original_tagname_ = 'infTermDescarreg'
-        elif nodeName_ == 'infEmbComb':
-            obj_ = infEmbComb.factory()
+            self.procEventoMDFe.append(obj_)
+            obj_.original_tagname_ = 'procEventoMDFe'
+# end class TRetConsSitMDFe
+
+
+class SignatureType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Id=None, SignedInfo=None, SignatureValue=None, KeyInfo=None):
+        self.original_tagname_ = None
+        self.Id = _cast(None, Id)
+        self.SignedInfo = SignedInfo
+        self.SignatureValue = SignatureValue
+        self.KeyInfo = KeyInfo
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, SignatureType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if SignatureType.subclass:
+            return SignatureType.subclass(*args_, **kwargs_)
+        else:
+            return SignatureType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_SignedInfo(self): return self.SignedInfo
+    def set_SignedInfo(self, SignedInfo): self.SignedInfo = SignedInfo
+    def get_SignatureValue(self): return self.SignatureValue
+    def set_SignatureValue(self, SignatureValue): self.SignatureValue = SignatureValue
+    def get_KeyInfo(self): return self.KeyInfo
+    def set_KeyInfo(self, KeyInfo): self.KeyInfo = KeyInfo
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
+    def hasContent_(self):
+        if (
+            self.SignedInfo is not None or
+            self.SignatureValue is not None or
+            self.KeyInfo is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='SignatureType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignatureType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignatureType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignatureType'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignatureType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.SignedInfo is not None:
+            self.SignedInfo.export(outfile, level, namespace_, name_='SignedInfo', pretty_print=pretty_print)
+        if self.SignatureValue is not None:
+            self.SignatureValue.export(outfile, level, namespace_, name_='SignatureValue', pretty_print=pretty_print)
+        if self.KeyInfo is not None:
+            self.KeyInfo.export(outfile, level, namespace_, name_='KeyInfo', pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'SignedInfo':
+            obj_ = SignedInfoType.factory()
             obj_.build(child_)
-            self.infEmbComb.append(obj_)
-            obj_.original_tagname_ = 'infEmbComb'
-        elif nodeName_ == 'infUnidCargaVazia':
-            obj_ = infUnidCargaVazia.factory()
+            self.SignedInfo = obj_
+            obj_.original_tagname_ = 'SignedInfo'
+        elif nodeName_ == 'SignatureValue':
+            obj_ = SignatureValueType.factory()
             obj_.build(child_)
-            self.infUnidCargaVazia.append(obj_)
-            obj_.original_tagname_ = 'infUnidCargaVazia'
-        elif nodeName_ == 'infUnidTranspVazia':
-            obj_ = infUnidTranspVazia.factory()
+            self.SignatureValue = obj_
+            obj_.original_tagname_ = 'SignatureValue'
+        elif nodeName_ == 'KeyInfo':
+            obj_ = KeyInfoType.factory()
             obj_.build(child_)
-            self.infUnidTranspVazia.append(obj_)
-            obj_.original_tagname_ = 'infUnidTranspVazia'
-# end class aquav
+            self.KeyInfo = obj_
+            obj_.original_tagname_ = 'KeyInfo'
+# end class SignatureType
 
 
-class irin(GeneratedsSuper):
-    """Irin do navio sempre deverá ser informado"""
+class SignatureValueType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, Id=None, valueOf_=None):
         self.original_tagname_ = None
+        self.Id = _cast(None, Id)
+        self.valueOf_ = valueOf_
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, irin)
+                CurrentSubclassModule_, SignatureValueType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if irin.subclass:
-            return irin.subclass(*args_, **kwargs_)
+        if SignatureValueType.subclass:
+            return SignatureValueType.subclass(*args_, **kwargs_)
         else:
-            return irin(*args_, **kwargs_)
+            return SignatureValueType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
+    def get_valueOf_(self): return self.valueOf_
+    def set_valueOf_(self, valueOf_): self.valueOf_ = valueOf_
     def hasContent_(self):
         if (
-
+            (1 if type(self.valueOf_) in [int,float] else self.valueOf_)
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='irin', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('irin')
+    def export(self, outfile, level, namespace_='', name_='SignatureValueType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureValueType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -984,58 +1236,77 @@ class irin(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='irin')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignatureValueType')
         if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='irin', pretty_print=pretty_print)
+            outfile.write('>')
+            outfile.write(self.convert_unicode(self.valueOf_))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignatureValueType', pretty_print=pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='irin'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='irin', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignatureValueType'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignatureValueType', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
+        self.valueOf_ = get_all_text_(node)
         for child in node:
             nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
-# end class irin
+# end class SignatureValueType
 
 
-class tpEmb(GeneratedsSuper):
-    """Código do tipo de embarcaçãoPreencher com código da Tabela de Tipo
-    de Embarcação definida no Ministério dos Transportes"""
+class SignedInfoType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, Id=None, CanonicalizationMethod=None, SignatureMethod=None, Reference=None):
         self.original_tagname_ = None
+        self.Id = _cast(None, Id)
+        self.CanonicalizationMethod = CanonicalizationMethod
+        self.SignatureMethod = SignatureMethod
+        self.Reference = Reference
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, tpEmb)
+                CurrentSubclassModule_, SignedInfoType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if tpEmb.subclass:
-            return tpEmb.subclass(*args_, **kwargs_)
+        if SignedInfoType.subclass:
+            return SignedInfoType.subclass(*args_, **kwargs_)
         else:
-            return tpEmb(*args_, **kwargs_)
+            return SignedInfoType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_CanonicalizationMethod(self): return self.CanonicalizationMethod
+    def set_CanonicalizationMethod(self, CanonicalizationMethod): self.CanonicalizationMethod = CanonicalizationMethod
+    def get_SignatureMethod(self): return self.SignatureMethod
+    def set_SignatureMethod(self, SignatureMethod): self.SignatureMethod = SignatureMethod
+    def get_Reference(self): return self.Reference
+    def set_Reference(self, Reference): self.Reference = Reference
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
     def hasContent_(self):
         if (
-
+            self.CanonicalizationMethod is not None or
+            self.SignatureMethod is not None or
+            self.Reference is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='tpEmb', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('tpEmb')
+    def export(self, outfile, level, namespace_='', name_='SignedInfoType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignedInfoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -1047,530 +1318,29 @@ class tpEmb(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='tpEmb')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignedInfoType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='tpEmb', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='tpEmb'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='tpEmb', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class tpEmb
-
-
-class cEmbar(GeneratedsSuper):
-    """Código da embarcação"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, cEmbar)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if cEmbar.subclass:
-            return cEmbar.subclass(*args_, **kwargs_)
-        else:
-            return cEmbar(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='cEmbar', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('cEmbar')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='cEmbar')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='cEmbar', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='cEmbar'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='cEmbar', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class cEmbar
-
-
-class xEmbar(GeneratedsSuper):
-    """Nome da embarcação"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, xEmbar)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if xEmbar.subclass:
-            return xEmbar.subclass(*args_, **kwargs_)
-        else:
-            return xEmbar(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='xEmbar', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('xEmbar')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='xEmbar')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='xEmbar', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='xEmbar'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='xEmbar', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class xEmbar
-
-
-class nViag(GeneratedsSuper):
-    """Número da Viagem"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, nViag)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if nViag.subclass:
-            return nViag.subclass(*args_, **kwargs_)
-        else:
-            return nViag(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='nViag', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('nViag')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='nViag')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='nViag', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='nViag'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='nViag', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class nViag
-
-
-class cPrtEmb(GeneratedsSuper):
-    """Código do Porto de EmbarquePreencher de acordo com Tabela de Portos
-    definida no Ministério dos Transportes"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, cPrtEmb)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if cPrtEmb.subclass:
-            return cPrtEmb.subclass(*args_, **kwargs_)
-        else:
-            return cPrtEmb(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='cPrtEmb', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('cPrtEmb')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='cPrtEmb')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='cPrtEmb', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='cPrtEmb'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='cPrtEmb', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class cPrtEmb
-
-
-class cPrtDest(GeneratedsSuper):
-    """Código do Porto de DestinoPreencher de acordo com Tabela de Portos
-    definida no Ministério dos Transportes"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, cPrtDest)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if cPrtDest.subclass:
-            return cPrtDest.subclass(*args_, **kwargs_)
-        else:
-            return cPrtDest(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='cPrtDest', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('cPrtDest')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='cPrtDest')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='cPrtDest', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='cPrtDest'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='cPrtDest', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class cPrtDest
-
-
-class prtTrans(GeneratedsSuper):
-    """Porto de Transbordo"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, prtTrans)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if prtTrans.subclass:
-            return prtTrans.subclass(*args_, **kwargs_)
-        else:
-            return prtTrans(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='prtTrans', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('prtTrans')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='prtTrans')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='prtTrans', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='prtTrans'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='prtTrans', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class prtTrans
-
-
-class tpNav(GeneratedsSuper):
-    """Tipo de NavegaçãoPreencher com: 0 - Interior; 1 - Cabotagem"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, tpNav)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if tpNav.subclass:
-            return tpNav.subclass(*args_, **kwargs_)
-        else:
-            return tpNav(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='tpNav', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('tpNav')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='tpNav')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='tpNav', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='tpNav'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='tpNav', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class tpNav
-
-
-class infTermCarreg(GeneratedsSuper):
-    """Grupo de informações dos terminais de carregamento."""
-    subclass = None
-    superclass = None
-    def __init__(self, cTermCarreg=None, xTermCarreg=None):
-        self.original_tagname_ = None
-        self.cTermCarreg = cTermCarreg
-        self.xTermCarreg = xTermCarreg
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, infTermCarreg)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if infTermCarreg.subclass:
-            return infTermCarreg.subclass(*args_, **kwargs_)
-        else:
-            return infTermCarreg(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_cTermCarreg(self): return self.cTermCarreg
-    def set_cTermCarreg(self, cTermCarreg): self.cTermCarreg = cTermCarreg
-    def get_xTermCarreg(self): return self.xTermCarreg
-    def set_xTermCarreg(self, xTermCarreg): self.xTermCarreg = xTermCarreg
-    def hasContent_(self):
-        if (
-            self.cTermCarreg is not None or
-            self.xTermCarreg is not None
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='infTermCarreg', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infTermCarreg')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infTermCarreg')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='infTermCarreg', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignedInfoType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infTermCarreg'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='infTermCarreg', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignedInfoType'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignedInfoType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.cTermCarreg is not None:
-            self.cTermCarreg.export(outfile, level, namespace_, name_='cTermCarreg', pretty_print=pretty_print)
-        if self.xTermCarreg is not None:
-            self.xTermCarreg.export(outfile, level, namespace_, name_='xTermCarreg', pretty_print=pretty_print)
+        if self.CanonicalizationMethod is not None:
+            self.CanonicalizationMethod.export(outfile, level, namespace_, name_='CanonicalizationMethod', pretty_print=pretty_print)
+        if self.SignatureMethod is not None:
+            self.SignatureMethod.export(outfile, level, namespace_, name_='SignatureMethod', pretty_print=pretty_print)
+        if self.Reference is not None:
+            self.Reference.export(outfile, level, namespace_, name_='Reference', pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1579,47 +1349,79 @@ class infTermCarreg(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'cTermCarreg':
-            obj_ = None
-            self.cTermCarreg = obj_
-            obj_.original_tagname_ = 'cTermCarreg'
-        elif nodeName_ == 'xTermCarreg':
-            obj_ = None
-            self.xTermCarreg = obj_
-            obj_.original_tagname_ = 'xTermCarreg'
-# end class infTermCarreg
+        if nodeName_ == 'CanonicalizationMethod':
+            obj_ = CanonicalizationMethodType.factory()
+            obj_.build(child_)
+            self.CanonicalizationMethod = obj_
+            obj_.original_tagname_ = 'CanonicalizationMethod'
+        elif nodeName_ == 'SignatureMethod':
+            obj_ = SignatureMethodType.factory()
+            obj_.build(child_)
+            self.SignatureMethod = obj_
+            obj_.original_tagname_ = 'SignatureMethod'
+        elif nodeName_ == 'Reference':
+            obj_ = ReferenceType.factory()
+            obj_.build(child_)
+            self.Reference = obj_
+            obj_.original_tagname_ = 'Reference'
+# end class SignedInfoType
 
 
-class cTermCarreg(GeneratedsSuper):
-    """Código do Terminal de CarregamentoPreencher de acordo com a Tabela
-    de Terminais de Carregamento. O código de cada Porto está
-    definido no Ministério de Transportes."""
+class ReferenceType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, Id=None, URI=None, Type=None, Transforms=None, DigestMethod=None, DigestValue=None):
         self.original_tagname_ = None
+        self.Id = _cast(None, Id)
+        self.URI = _cast(None, URI)
+        self.Type = _cast(None, Type)
+        self.Transforms = Transforms
+        self.DigestMethod = DigestMethod
+        self.DigestValue = DigestValue
+        self.validate_DigestValueType(self.DigestValue)
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, cTermCarreg)
+                CurrentSubclassModule_, ReferenceType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if cTermCarreg.subclass:
-            return cTermCarreg.subclass(*args_, **kwargs_)
+        if ReferenceType.subclass:
+            return ReferenceType.subclass(*args_, **kwargs_)
         else:
-            return cTermCarreg(*args_, **kwargs_)
+            return ReferenceType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_Transforms(self): return self.Transforms
+    def set_Transforms(self, Transforms): self.Transforms = Transforms
+    def get_DigestMethod(self): return self.DigestMethod
+    def set_DigestMethod(self, DigestMethod): self.DigestMethod = DigestMethod
+    def get_DigestValue(self): return self.DigestValue
+    def set_DigestValue(self, DigestValue): self.DigestValue = DigestValue
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
+    def get_URI(self): return self.URI
+    def set_URI(self, URI): self.URI = URI
+    def get_Type(self): return self.Type
+    def set_Type(self, Type): self.Type = Type
+    def validate_DigestValueType(self, value):
+        # Validate type DigestValueType, a restriction on base64Binary.
+        if value is not None and Validate_simpletypes_:
+            pass
     def hasContent_(self):
         if (
-
+            self.Transforms is not None or
+            self.DigestMethod is not None or
+            self.DigestValue is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='cTermCarreg', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('cTermCarreg')
+    def export(self, outfile, level, namespace_='', name_='ReferenceType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('ReferenceType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -1631,156 +1433,36 @@ class cTermCarreg(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='cTermCarreg')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='ReferenceType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='cTermCarreg', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='cTermCarreg'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='cTermCarreg', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class cTermCarreg
-
-
-class xTermCarreg(GeneratedsSuper):
-    """Nome do Terminal de Carregamento"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, xTermCarreg)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if xTermCarreg.subclass:
-            return xTermCarreg.subclass(*args_, **kwargs_)
-        else:
-            return xTermCarreg(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='xTermCarreg', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('xTermCarreg')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='xTermCarreg')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='xTermCarreg', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='xTermCarreg'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='xTermCarreg', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class xTermCarreg
-
-
-class infTermDescarreg(GeneratedsSuper):
-    """Grupo de informações dos terminais de descarregamento."""
-    subclass = None
-    superclass = None
-    def __init__(self, cTermDescarreg=None, xTermDescarreg=None):
-        self.original_tagname_ = None
-        self.cTermDescarreg = cTermDescarreg
-        self.xTermDescarreg = xTermDescarreg
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, infTermDescarreg)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if infTermDescarreg.subclass:
-            return infTermDescarreg.subclass(*args_, **kwargs_)
-        else:
-            return infTermDescarreg(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_cTermDescarreg(self): return self.cTermDescarreg
-    def set_cTermDescarreg(self, cTermDescarreg): self.cTermDescarreg = cTermDescarreg
-    def get_xTermDescarreg(self): return self.xTermDescarreg
-    def set_xTermDescarreg(self, xTermDescarreg): self.xTermDescarreg = xTermDescarreg
-    def hasContent_(self):
-        if (
-            self.cTermDescarreg is not None or
-            self.xTermDescarreg is not None
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='infTermDescarreg', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infTermDescarreg')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infTermDescarreg')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='infTermDescarreg', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='ReferenceType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infTermDescarreg'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='infTermDescarreg', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='ReferenceType'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+        if self.URI is not None and 'URI' not in already_processed:
+            already_processed.add('URI')
+            outfile.write(' URI=%s' % (quote_attrib(self.URI), ))
+        if self.Type is not None and 'Type' not in already_processed:
+            already_processed.add('Type')
+            outfile.write(' Type=%s' % (quote_attrib(self.Type), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='ReferenceType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.cTermDescarreg is not None:
-            self.cTermDescarreg.export(outfile, level, namespace_, name_='cTermDescarreg', pretty_print=pretty_print)
-        if self.xTermDescarreg is not None:
-            self.xTermDescarreg.export(outfile, level, namespace_, name_='xTermDescarreg', pretty_print=pretty_print)
+        if self.Transforms is not None:
+            self.Transforms.export(outfile, level, namespace_, name_='Transforms', pretty_print=pretty_print)
+        if self.DigestMethod is not None:
+            self.DigestMethod.export(outfile, level, namespace_, name_='DigestMethod', pretty_print=pretty_print)
+        if self.DigestValue is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<DigestValue>%s</DigestValue>%s' % (self.gds_format_base64(self.DigestValue, input_name='DigestValue'), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -1789,47 +1471,79 @@ class infTermDescarreg(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
+        value = find_attr_value_('URI', node)
+        if value is not None and 'URI' not in already_processed:
+            already_processed.add('URI')
+            self.URI = value
+        value = find_attr_value_('Type', node)
+        if value is not None and 'Type' not in already_processed:
+            already_processed.add('Type')
+            self.Type = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'cTermDescarreg':
-            obj_ = None
-            self.cTermDescarreg = obj_
-            obj_.original_tagname_ = 'cTermDescarreg'
-        elif nodeName_ == 'xTermDescarreg':
-            obj_ = None
-            self.xTermDescarreg = obj_
-            obj_.original_tagname_ = 'xTermDescarreg'
-# end class infTermDescarreg
+        if nodeName_ == 'Transforms':
+            obj_ = TransformsType.factory()
+            obj_.build(child_)
+            self.Transforms = obj_
+            obj_.original_tagname_ = 'Transforms'
+        elif nodeName_ == 'DigestMethod':
+            obj_ = DigestMethodType.factory()
+            obj_.build(child_)
+            self.DigestMethod = obj_
+            obj_.original_tagname_ = 'DigestMethod'
+        elif nodeName_ == 'DigestValue':
+            sval_ = child_.text
+            if sval_ is not None:
+                try:
+                    bval_ = base64.b64decode(sval_)
+                except (TypeError, ValueError) as exp:
+                    raise_parse_error(child_, 'requires base64 encoded string: %s' % exp)
+                bval_ = self.gds_validate_base64(bval_, node, 'DigestValue')
+            else:
+                bval_ = None
+            self.DigestValue = bval_
+            # validate type DigestValueType
+            self.validate_DigestValueType(self.DigestValue)
+# end class ReferenceType
 
 
-class cTermDescarreg(GeneratedsSuper):
-    """Código do Terminal de DescarregamentoPreencher de acordo com a
-    Tabela de Terminais de Descarregamento. O código de cada Porto
-    está definido no Ministério de Transportes."""
+class TransformsType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, Transform=None):
         self.original_tagname_ = None
+        if Transform is None:
+            self.Transform = []
+        else:
+            self.Transform = Transform
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, cTermDescarreg)
+                CurrentSubclassModule_, TransformsType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if cTermDescarreg.subclass:
-            return cTermDescarreg.subclass(*args_, **kwargs_)
+        if TransformsType.subclass:
+            return TransformsType.subclass(*args_, **kwargs_)
         else:
-            return cTermDescarreg(*args_, **kwargs_)
+            return TransformsType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_Transform(self): return self.Transform
+    def set_Transform(self, Transform): self.Transform = Transform
+    def add_Transform(self, value): self.Transform.append(value)
+    def insert_Transform_at(self, index, value): self.Transform.insert(index, value)
+    def replace_Transform_at(self, index, value): self.Transform[index] = value
     def hasContent_(self):
         if (
-
+            self.Transform
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='cTermDescarreg', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('cTermDescarreg')
+    def export(self, outfile, level, namespace_='', name_='TransformsType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TransformsType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -1841,156 +1555,23 @@ class cTermDescarreg(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='cTermDescarreg')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TransformsType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='cTermDescarreg', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='cTermDescarreg'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='cTermDescarreg', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class cTermDescarreg
-
-
-class xTermDescarreg(GeneratedsSuper):
-    """Nome do Terminal de Descarregamento"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, xTermDescarreg)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if xTermDescarreg.subclass:
-            return xTermDescarreg.subclass(*args_, **kwargs_)
-        else:
-            return xTermDescarreg(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='xTermDescarreg', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('xTermDescarreg')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='xTermDescarreg')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='xTermDescarreg', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='xTermDescarreg'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='xTermDescarreg', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class xTermDescarreg
-
-
-class infEmbComb(GeneratedsSuper):
-    """Informações das Embarcações do Comboio"""
-    subclass = None
-    superclass = None
-    def __init__(self, cEmbComb=None, xBalsa=None):
-        self.original_tagname_ = None
-        self.cEmbComb = cEmbComb
-        self.xBalsa = xBalsa
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, infEmbComb)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if infEmbComb.subclass:
-            return infEmbComb.subclass(*args_, **kwargs_)
-        else:
-            return infEmbComb(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_cEmbComb(self): return self.cEmbComb
-    def set_cEmbComb(self, cEmbComb): self.cEmbComb = cEmbComb
-    def get_xBalsa(self): return self.xBalsa
-    def set_xBalsa(self, xBalsa): self.xBalsa = xBalsa
-    def hasContent_(self):
-        if (
-            self.cEmbComb is not None or
-            self.xBalsa is not None
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='infEmbComb', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infEmbComb')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infEmbComb')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='infEmbComb', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TransformsType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infEmbComb'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TransformsType'):
         pass
-    def exportChildren(self, outfile, level, namespace_='', name_='infEmbComb', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='TransformsType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.cEmbComb is not None:
-            self.cEmbComb.export(outfile, level, namespace_, name_='cEmbComb', pretty_print=pretty_print)
-        if self.xBalsa is not None:
-            self.xBalsa.export(outfile, level, namespace_, name_='xBalsa', pretty_print=pretty_print)
+        for Transform_ in self.Transform:
+            Transform_.export(outfile, level, namespace_, name_='Transform', pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2001,43 +1582,51 @@ class infEmbComb(GeneratedsSuper):
     def buildAttributes(self, node, attrs, already_processed):
         pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'cEmbComb':
-            obj_ = None
-            self.cEmbComb = obj_
-            obj_.original_tagname_ = 'cEmbComb'
-        elif nodeName_ == 'xBalsa':
-            obj_ = None
-            self.xBalsa = obj_
-            obj_.original_tagname_ = 'xBalsa'
-# end class infEmbComb
+        if nodeName_ == 'Transform':
+            obj_ = TransformType.factory()
+            obj_.build(child_)
+            self.Transform.append(obj_)
+            obj_.original_tagname_ = 'Transform'
+# end class TransformsType
 
 
-class cEmbComb(GeneratedsSuper):
-    """Código da embarcação do comboio"""
+class TransformType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, Algorithm=None, XPath=None):
         self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+        if XPath is None:
+            self.XPath = []
+        else:
+            self.XPath = XPath
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, cEmbComb)
+                CurrentSubclassModule_, TransformType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if cEmbComb.subclass:
-            return cEmbComb.subclass(*args_, **kwargs_)
+        if TransformType.subclass:
+            return TransformType.subclass(*args_, **kwargs_)
         else:
-            return cEmbComb(*args_, **kwargs_)
+            return TransformType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_XPath(self): return self.XPath
+    def set_XPath(self, XPath): self.XPath = XPath
+    def add_XPath(self, value): self.XPath.append(value)
+    def insert_XPath_at(self, index, value): self.XPath.insert(index, value)
+    def replace_XPath_at(self, index, value): self.XPath[index] = value
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
     def hasContent_(self):
         if (
-
+            self.XPath
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='cEmbComb', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('cEmbComb')
+    def export(self, outfile, level, namespace_='', name_='TransformType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TransformType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -2049,157 +1638,26 @@ class cEmbComb(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='cEmbComb')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TransformType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='cEmbComb', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='cEmbComb'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='cEmbComb', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class cEmbComb
-
-
-class xBalsa(GeneratedsSuper):
-    """Identificador da Balsa"""
-    subclass = None
-    superclass = None
-    def __init__(self):
-        self.original_tagname_ = None
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, xBalsa)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if xBalsa.subclass:
-            return xBalsa.subclass(*args_, **kwargs_)
-        else:
-            return xBalsa(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def hasContent_(self):
-        if (
-
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='xBalsa', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('xBalsa')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='xBalsa')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='xBalsa', pretty_print=pretty_print)
-            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
-        else:
-            outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='xBalsa'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='xBalsa', fromsubclass_=False, pretty_print=True):
-        pass
-    def build(self, node):
-        already_processed = set()
-        self.buildAttributes(node, node.attrib, already_processed)
-        for child in node:
-            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
-            self.buildChildren(child, node, nodeName_)
-        return self
-    def buildAttributes(self, node, attrs, already_processed):
-        pass
-    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class xBalsa
-
-
-class infUnidCargaVazia(GeneratedsSuper):
-    """Informações das Undades de Carga vazias"""
-    subclass = None
-    superclass = None
-    def __init__(self, idUnidCargaVazia=None, tpUnidCargaVazia=None):
-        self.original_tagname_ = None
-        self.idUnidCargaVazia = idUnidCargaVazia
-        self.tpUnidCargaVazia = tpUnidCargaVazia
-    def factory(*args_, **kwargs_):
-        if CurrentSubclassModule_ is not None:
-            subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, infUnidCargaVazia)
-            if subclass is not None:
-                return subclass(*args_, **kwargs_)
-        if infUnidCargaVazia.subclass:
-            return infUnidCargaVazia.subclass(*args_, **kwargs_)
-        else:
-            return infUnidCargaVazia(*args_, **kwargs_)
-    factory = staticmethod(factory)
-    def get_idUnidCargaVazia(self): return self.idUnidCargaVazia
-    def set_idUnidCargaVazia(self, idUnidCargaVazia): self.idUnidCargaVazia = idUnidCargaVazia
-    def get_tpUnidCargaVazia(self): return self.tpUnidCargaVazia
-    def set_tpUnidCargaVazia(self, tpUnidCargaVazia): self.tpUnidCargaVazia = tpUnidCargaVazia
-    def hasContent_(self):
-        if (
-            self.idUnidCargaVazia is not None or
-            self.tpUnidCargaVazia is not None
-        ):
-            return True
-        else:
-            return False
-    def export(self, outfile, level, namespace_='', name_='infUnidCargaVazia', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infUnidCargaVazia')
-        if imported_ns_def_ is not None:
-            namespacedef_ = imported_ns_def_
-        if pretty_print:
-            eol_ = '\n'
-        else:
-            eol_ = ''
-        if self.original_tagname_ is not None:
-            name_ = self.original_tagname_
-        showIndent(outfile, level, pretty_print)
-        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
-        already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infUnidCargaVazia')
-        if self.hasContent_():
-            outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='infUnidCargaVazia', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TransformType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infUnidCargaVazia'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='infUnidCargaVazia', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TransformType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TransformType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.idUnidCargaVazia is not None:
+        for XPath_ in self.XPath:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sidUnidCargaVazia>%s</%sidUnidCargaVazia>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(self.idUnidCargaVazia), input_name='idUnidCargaVazia')), namespace_, eol_))
-        if self.tpUnidCargaVazia is not None:
-            self.tpUnidCargaVazia.export(outfile, level, namespace_, name_='tpUnidCargaVazia', pretty_print=pretty_print)
+            outfile.write('<XPath>%s</XPath>%s' % (self.gds_encode(self.gds_format_string(quote_xml(XPath_), input_name='XPath')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2208,46 +1666,49 @@ class infUnidCargaVazia(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'idUnidCargaVazia':
-            idUnidCargaVazia_ = child_.text
-            idUnidCargaVazia_ = self.gds_validate_string(idUnidCargaVazia_, node, 'idUnidCargaVazia')
-            self.idUnidCargaVazia = idUnidCargaVazia_
-        elif nodeName_ == 'tpUnidCargaVazia':
-            obj_ = None
-            self.tpUnidCargaVazia = obj_
-            obj_.original_tagname_ = 'tpUnidCargaVazia'
-# end class infUnidCargaVazia
+        if nodeName_ == 'XPath':
+            XPath_ = child_.text
+            XPath_ = self.gds_validate_string(XPath_, node, 'XPath')
+            self.XPath.append(XPath_)
+# end class TransformType
 
 
-class tpUnidCargaVazia(GeneratedsSuper):
-    """Tipo da unidade de carga vazia1 - Container; 2 - ULD;3 - Pallet;4 -
-    Outros;"""
+class KeyInfoType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, Id=None, X509Data=None):
         self.original_tagname_ = None
+        self.Id = _cast(None, Id)
+        self.X509Data = X509Data
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, tpUnidCargaVazia)
+                CurrentSubclassModule_, KeyInfoType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if tpUnidCargaVazia.subclass:
-            return tpUnidCargaVazia.subclass(*args_, **kwargs_)
+        if KeyInfoType.subclass:
+            return KeyInfoType.subclass(*args_, **kwargs_)
         else:
-            return tpUnidCargaVazia(*args_, **kwargs_)
+            return KeyInfoType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_X509Data(self): return self.X509Data
+    def set_X509Data(self, X509Data): self.X509Data = X509Data
+    def get_Id(self): return self.Id
+    def set_Id(self, Id): self.Id = Id
     def hasContent_(self):
         if (
-
+            self.X509Data is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='tpUnidCargaVazia', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('tpUnidCargaVazia')
+    def export(self, outfile, level, namespace_='', name_='KeyInfoType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('KeyInfoType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -2259,17 +1720,25 @@ class tpUnidCargaVazia(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='tpUnidCargaVazia')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='KeyInfoType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='tpUnidCargaVazia', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='KeyInfoType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='tpUnidCargaVazia'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='tpUnidCargaVazia', fromsubclass_=False, pretty_print=True):
-        pass
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='KeyInfoType'):
+        if self.Id is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            outfile.write(' Id=%s' % (quote_attrib(self.Id), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='KeyInfoType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.X509Data is not None:
+            self.X509Data.export(outfile, level, namespace_, name_='X509Data', pretty_print=pretty_print)
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2278,45 +1747,47 @@ class tpUnidCargaVazia(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('Id', node)
+        if value is not None and 'Id' not in already_processed:
+            already_processed.add('Id')
+            self.Id = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        pass
-# end class tpUnidCargaVazia
+        if nodeName_ == 'X509Data':
+            obj_ = X509DataType.factory()
+            obj_.build(child_)
+            self.X509Data = obj_
+            obj_.original_tagname_ = 'X509Data'
+# end class KeyInfoType
 
 
-class infUnidTranspVazia(GeneratedsSuper):
-    """Informações das Undades de Transporte vazias"""
+class X509DataType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self, idUnidTranspVazia=None, tpUnidTranspVazia=None):
+    def __init__(self, X509Certificate=None):
         self.original_tagname_ = None
-        self.idUnidTranspVazia = idUnidTranspVazia
-        self.tpUnidTranspVazia = tpUnidTranspVazia
+        self.X509Certificate = X509Certificate
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, infUnidTranspVazia)
+                CurrentSubclassModule_, X509DataType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if infUnidTranspVazia.subclass:
-            return infUnidTranspVazia.subclass(*args_, **kwargs_)
+        if X509DataType.subclass:
+            return X509DataType.subclass(*args_, **kwargs_)
         else:
-            return infUnidTranspVazia(*args_, **kwargs_)
+            return X509DataType(*args_, **kwargs_)
     factory = staticmethod(factory)
-    def get_idUnidTranspVazia(self): return self.idUnidTranspVazia
-    def set_idUnidTranspVazia(self, idUnidTranspVazia): self.idUnidTranspVazia = idUnidTranspVazia
-    def get_tpUnidTranspVazia(self): return self.tpUnidTranspVazia
-    def set_tpUnidTranspVazia(self, tpUnidTranspVazia): self.tpUnidTranspVazia = tpUnidTranspVazia
+    def get_X509Certificate(self): return self.X509Certificate
+    def set_X509Certificate(self, X509Certificate): self.X509Certificate = X509Certificate
     def hasContent_(self):
         if (
-            self.idUnidTranspVazia is not None or
-            self.tpUnidTranspVazia is not None
+            self.X509Certificate is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='infUnidTranspVazia', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('infUnidTranspVazia')
+    def export(self, outfile, level, namespace_='', name_='X509DataType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('X509DataType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -2328,26 +1799,24 @@ class infUnidTranspVazia(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='infUnidTranspVazia')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='X509DataType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='infUnidTranspVazia', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='X509DataType', pretty_print=pretty_print)
             showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='infUnidTranspVazia'):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='X509DataType'):
         pass
-    def exportChildren(self, outfile, level, namespace_='', name_='infUnidTranspVazia', fromsubclass_=False, pretty_print=True):
+    def exportChildren(self, outfile, level, namespace_='', name_='X509DataType', fromsubclass_=False, pretty_print=True):
         if pretty_print:
             eol_ = '\n'
         else:
             eol_ = ''
-        if self.idUnidTranspVazia is not None:
+        if self.X509Certificate is not None:
             showIndent(outfile, level, pretty_print)
-            outfile.write('<%sidUnidTranspVazia>%s</%sidUnidTranspVazia>%s' % (namespace_, self.gds_encode(self.gds_format_string(quote_xml(self.idUnidTranspVazia), input_name='idUnidTranspVazia')), namespace_, eol_))
-        if self.tpUnidTranspVazia is not None:
-            self.tpUnidTranspVazia.export(outfile, level, namespace_, name_='tpUnidTranspVazia', pretty_print=pretty_print)
+            outfile.write('<X509Certificate>%s</X509Certificate>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.X509Certificate), input_name='X509Certificate')), eol_))
     def build(self, node):
         already_processed = set()
         self.buildAttributes(node, node.attrib, already_processed)
@@ -2358,45 +1827,44 @@ class infUnidTranspVazia(GeneratedsSuper):
     def buildAttributes(self, node, attrs, already_processed):
         pass
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
-        if nodeName_ == 'idUnidTranspVazia':
-            idUnidTranspVazia_ = child_.text
-            idUnidTranspVazia_ = self.gds_validate_string(idUnidTranspVazia_, node, 'idUnidTranspVazia')
-            self.idUnidTranspVazia = idUnidTranspVazia_
-        elif nodeName_ == 'tpUnidTranspVazia':
-            obj_ = None
-            self.tpUnidTranspVazia = obj_
-            obj_.original_tagname_ = 'tpUnidTranspVazia'
-# end class infUnidTranspVazia
+        if nodeName_ == 'X509Certificate':
+            X509Certificate_ = child_.text
+            X509Certificate_ = self.gds_validate_string(X509Certificate_, node, 'X509Certificate')
+            self.X509Certificate = X509Certificate_
+# end class X509DataType
 
 
-class tpUnidTranspVazia(GeneratedsSuper):
-    """Tipo da unidade de transporte vaziaDeve ser preenchido com “1” para
-    Rodoviário Tração do tipo caminhão ou “2” para Rodoviário
-    reboque do tipo carreta"""
+class protMDFeType(GeneratedsSuper):
     subclass = None
     superclass = None
-    def __init__(self):
+    def __init__(self, versao=None, anytypeobjs_=None):
         self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.anytypeobjs_ = anytypeobjs_
     def factory(*args_, **kwargs_):
         if CurrentSubclassModule_ is not None:
             subclass = getSubclassFromModule_(
-                CurrentSubclassModule_, tpUnidTranspVazia)
+                CurrentSubclassModule_, protMDFeType)
             if subclass is not None:
                 return subclass(*args_, **kwargs_)
-        if tpUnidTranspVazia.subclass:
-            return tpUnidTranspVazia.subclass(*args_, **kwargs_)
+        if protMDFeType.subclass:
+            return protMDFeType.subclass(*args_, **kwargs_)
         else:
-            return tpUnidTranspVazia(*args_, **kwargs_)
+            return protMDFeType(*args_, **kwargs_)
     factory = staticmethod(factory)
+    def get_anytypeobjs_(self): return self.anytypeobjs_
+    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
     def hasContent_(self):
         if (
-
+            self.anytypeobjs_ is not None
         ):
             return True
         else:
             return False
-    def export(self, outfile, level, namespace_='', name_='tpUnidTranspVazia', namespacedef_='', pretty_print=True):
-        imported_ns_def_ = GenerateDSNamespaceDefs_.get('tpUnidTranspVazia')
+    def export(self, outfile, level, namespace_='', name_='protMDFeType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('protMDFeType')
         if imported_ns_def_ is not None:
             namespacedef_ = imported_ns_def_
         if pretty_print:
@@ -2408,16 +1876,175 @@ class tpUnidTranspVazia(GeneratedsSuper):
         showIndent(outfile, level, pretty_print)
         outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
         already_processed = set()
-        self.exportAttributes(outfile, level, already_processed, namespace_, name_='tpUnidTranspVazia')
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='protMDFeType')
         if self.hasContent_():
             outfile.write('>%s' % (eol_, ))
-            self.exportChildren(outfile, level + 1, namespace_='', name_='tpUnidTranspVazia', pretty_print=pretty_print)
+            self.exportChildren(outfile, level + 1, namespace_='', name_='protMDFeType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
             outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
         else:
             outfile.write('/>%s' % (eol_, ))
-    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='tpUnidTranspVazia'):
-        pass
-    def exportChildren(self, outfile, level, namespace_='', name_='tpUnidTranspVazia', fromsubclass_=False, pretty_print=True):
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='protMDFeType'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='protMDFeType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.anytypeobjs_ is not None:
+            self.anytypeobjs_.export(outfile, level, namespace_, pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        obj_ = self.gds_build_any(child_, 'protMDFeType')
+        if obj_ is not None:
+            self.set_anytypeobjs_(obj_)
+# end class protMDFeType
+
+
+class procEventoMDFeType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, anytypeobjs_=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.anytypeobjs_ = anytypeobjs_
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, procEventoMDFeType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if procEventoMDFeType.subclass:
+            return procEventoMDFeType.subclass(*args_, **kwargs_)
+        else:
+            return procEventoMDFeType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_anytypeobjs_(self): return self.anytypeobjs_
+    def set_anytypeobjs_(self, anytypeobjs_): self.anytypeobjs_ = anytypeobjs_
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def hasContent_(self):
+        if (
+            self.anytypeobjs_ is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='procEventoMDFeType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('procEventoMDFeType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='procEventoMDFeType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='procEventoMDFeType', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='procEventoMDFeType'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (self.gds_encode(self.gds_format_string(quote_attrib(self.versao), input_name='versao')), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='procEventoMDFeType', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.anytypeobjs_ is not None:
+            self.anytypeobjs_.export(outfile, level, namespace_, pretty_print=pretty_print)
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        obj_ = self.gds_build_any(child_, 'procEventoMDFeType')
+        if obj_ is not None:
+            self.set_anytypeobjs_(obj_)
+# end class procEventoMDFeType
+
+
+class CanonicalizationMethodType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Algorithm=None):
+        self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, CanonicalizationMethodType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if CanonicalizationMethodType.subclass:
+            return CanonicalizationMethodType.subclass(*args_, **kwargs_)
+        else:
+            return CanonicalizationMethodType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
+    def hasContent_(self):
+        if (
+
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='CanonicalizationMethodType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('CanonicalizationMethodType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='CanonicalizationMethodType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='CanonicalizationMethodType', pretty_print=pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='CanonicalizationMethodType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='CanonicalizationMethodType', fromsubclass_=False, pretty_print=True):
         pass
     def build(self, node):
         already_processed = set()
@@ -2427,13 +2054,156 @@ class tpUnidTranspVazia(GeneratedsSuper):
             self.buildChildren(child, node, nodeName_)
         return self
     def buildAttributes(self, node, attrs, already_processed):
-        pass
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
-# end class tpUnidTranspVazia
+# end class CanonicalizationMethodType
+
+
+class SignatureMethodType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Algorithm=None):
+        self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, SignatureMethodType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if SignatureMethodType.subclass:
+            return SignatureMethodType.subclass(*args_, **kwargs_)
+        else:
+            return SignatureMethodType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
+    def hasContent_(self):
+        if (
+
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='SignatureMethodType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('SignatureMethodType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='SignatureMethodType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='SignatureMethodType', pretty_print=pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='SignatureMethodType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='SignatureMethodType', fromsubclass_=False, pretty_print=True):
+        pass
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        pass
+# end class SignatureMethodType
+
+
+class DigestMethodType(GeneratedsSuper):
+    subclass = None
+    superclass = None
+    def __init__(self, Algorithm=None):
+        self.original_tagname_ = None
+        self.Algorithm = _cast(None, Algorithm)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, DigestMethodType)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if DigestMethodType.subclass:
+            return DigestMethodType.subclass(*args_, **kwargs_)
+        else:
+            return DigestMethodType(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_Algorithm(self): return self.Algorithm
+    def set_Algorithm(self, Algorithm): self.Algorithm = Algorithm
+    def hasContent_(self):
+        if (
+
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='DigestMethodType', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('DigestMethodType')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='DigestMethodType')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='DigestMethodType', pretty_print=pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='DigestMethodType'):
+        if self.Algorithm is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            outfile.write(' Algorithm=%s' % (quote_attrib(self.Algorithm), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='DigestMethodType', fromsubclass_=False, pretty_print=True):
+        pass
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('Algorithm', node)
+        if value is not None and 'Algorithm' not in already_processed:
+            already_processed.add('Algorithm')
+            self.Algorithm = value
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        pass
+# end class DigestMethodType
 
 
 GDSClassesMapping = {
+    'Signature': SignatureType,
+    'consSitMDFe': TConsSitMDFe,
 }
 
 
@@ -2461,8 +2231,8 @@ def parse(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'aquav'
-        rootClass = aquav
+        rootTag = 'TConsSitMDFe'
+        rootClass = TConsSitMDFe
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2482,8 +2252,8 @@ def parseEtree(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'aquav'
-        rootClass = aquav
+        rootTag = 'TConsSitMDFe'
+        rootClass = TConsSitMDFe
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2510,8 +2280,8 @@ def parseString(inString, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'aquav'
-        rootClass = aquav
+        rootTag = 'TConsSitMDFe'
+        rootClass = TConsSitMDFe
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -2530,15 +2300,15 @@ def parseLiteral(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'aquav'
-        rootClass = aquav
+        rootTag = 'TConsSitMDFe'
+        rootClass = TConsSitMDFe
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
     doc = None
     if not silence:
-        sys.stdout.write('#from mdfeModalAquaviario import *\n\n')
-        sys.stdout.write('import mdfeModalAquaviario as model_\n\n')
+        sys.stdout.write('#from consSitMDFe import *\n\n')
+        sys.stdout.write('import consSitMDFe as model_\n\n')
         sys.stdout.write('rootObj = model_.rootClass(\n')
         rootObj.exportLiteral(sys.stdout, 0, name_=rootTag)
         sys.stdout.write(')\n')
@@ -2559,5 +2329,19 @@ if __name__ == '__main__':
 
 
 __all__ = [
-    "aquav"
+    "CanonicalizationMethodType",
+    "DigestMethodType",
+    "KeyInfoType",
+    "ReferenceType",
+    "SignatureMethodType",
+    "SignatureType",
+    "SignatureValueType",
+    "SignedInfoType",
+    "TConsSitMDFe",
+    "TRetConsSitMDFe",
+    "TransformType",
+    "TransformsType",
+    "X509DataType",
+    "procEventoMDFeType",
+    "protMDFeType"
 ]

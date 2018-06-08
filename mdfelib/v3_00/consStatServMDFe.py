@@ -2,28 +2,30 @@
 # -*- coding: utf-8 -*-
 
 #
-# Generated Tue Mar 20 04:00:43 2018 by generateDS.py version 2.28b.
-# Python 3.5.2 (default, Sep 14 2017, 22:51:06)  [GCC 5.4.0 20160609]
+# Generated Thu May 31 13:52:44 2018 by generateDS.py version 2.29.2.
+# Python 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
 #
 # Command line options:
-#   ('--no-process-includes', '')
+#   ('--no-namespace-defs', '')
 #   ('-o', 'mdfelib/v3_00/consStatServMDFe.py')
 #
 # Command line arguments:
 #   schemas/v3_00/consStatServMDFe_v3.00.xsd
 #
 # Command line:
-#   /usr/local/bin/generateDS --no-process-includes -o "mdfelib/v3_00/consStatServMDFe.py" schemas/v3_00/consStatServMDFe_v3.00.xsd
+#   /usr/local/bin/generateDS --no-namespace-defs -o "mdfelib/v3_00/consStatServMDFe.py" schemas/v3_00/consStatServMDFe_v3.00.xsd
 #
 # Current working directory (os.getcwd()):
 #   mdfelib
 #
 
+from __future__ import unicode_literals
 import sys
 import re as re_
 import base64
 import datetime as datetime_
 import warnings as warnings_
+from builtins import str
 try:
     from lxml import etree as etree_
 except ImportError:
@@ -386,7 +388,7 @@ except ImportError as exp:
             return dict(((v, k) for k, v in mapping.iteritems()))
         @staticmethod
         def gds_encode(instring):
-            if sys.version_info.major == 2:
+            if sys.version_info.major == 2 and not isinstance(instring, unicode):
                 return instring.encode(ExternalEncoding)
             else:
                 return instring
@@ -665,13 +667,15 @@ class MixedContainer:
 
 class MemberSpec_(object):
     def __init__(self, name='', data_type='', container=0,
-            optional=0, child_attrs=None, choice=None):
+                 optional=0, child_attrs=None, choice=None,
+                 documentation=""):
         self.name = name
         self.data_type = data_type
         self.container = container
         self.child_attrs = child_attrs
         self.choice = choice
         self.optional = optional
+        self.documentation = documentation
     def set_name(self, name): self.name = name
     def get_name(self): return self.name
     def set_data_type(self, data_type): self.data_type = data_type
@@ -692,6 +696,7 @@ class MemberSpec_(object):
     def get_choice(self): return self.choice
     def set_optional(self, optional): self.optional = optional
     def get_optional(self): return self.optional
+    def get_documentation(self): return self.documentation
 
 
 def _cast(typ, value):
@@ -704,7 +709,419 @@ def _cast(typ, value):
 #
 
 
+class TConsStatServ(GeneratedsSuper):
+    """Tipo Pedido de Consulta do Status do Serviço MDFe"""
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, tpAmb=None, xServ=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.xServ = xServ
+        self.validate_TServ(self.xServ)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, TConsStatServ)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if TConsStatServ.subclass:
+            return TConsStatServ.subclass(*args_, **kwargs_)
+        else:
+            return TConsStatServ(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_xServ(self): return self.xServ
+    def set_xServ(self, xServ): self.xServ = xServ
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_TServ(self, value):
+        # Validate type TServ, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TServ_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TServ_patterns_, ))
+    validate_TServ_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TVerConsStat(self, value):
+        # Validate type TVerConsStat, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsStat_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsStat_patterns_, ))
+    validate_TVerConsStat_patterns_ = [['^3\\.00$']]
+    def hasContent_(self):
+        if (
+            self.tpAmb is not None or
+            self.xServ is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='TConsStatServ', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TConsStatServ')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TConsStatServ')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TConsStatServ', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TConsStatServ'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TConsStatServ', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.xServ is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xServ>%s</xServ>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xServ), input_name='xServ')), eol_))
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerConsStat(self.versao)    # validate type TVerConsStat
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'xServ':
+            xServ_ = child_.text
+            xServ_ = self.gds_validate_string(xServ_, node, 'xServ')
+            self.xServ = xServ_
+            # validate type TServ
+            self.validate_TServ(self.xServ)
+# end class TConsStatServ
+
+
+class TRetConsStatServ(GeneratedsSuper):
+    """Tipo Resultado da Consulta do Status do Serviço MDFe"""
+    subclass = None
+    superclass = None
+    def __init__(self, versao=None, tpAmb=None, verAplic=None, cStat=None, xMotivo=None, cUF=None, dhRecbto=None, tMed=None, dhRetorno=None, xObs=None):
+        self.original_tagname_ = None
+        self.versao = _cast(None, versao)
+        self.tpAmb = tpAmb
+        self.validate_TAmb(self.tpAmb)
+        self.verAplic = verAplic
+        self.validate_verAplicType(self.verAplic)
+        self.cStat = cStat
+        self.validate_TStat(self.cStat)
+        self.xMotivo = xMotivo
+        self.validate_TMotivo(self.xMotivo)
+        self.cUF = cUF
+        self.validate_TCodUfIBGE(self.cUF)
+        self.dhRecbto = dhRecbto
+        self.validate_TDateTimeUTC(self.dhRecbto)
+        self.tMed = tMed
+        self.validate_tMedType(self.tMed)
+        self.dhRetorno = dhRetorno
+        self.validate_TDateTimeUTC(self.dhRetorno)
+        self.xObs = xObs
+        self.validate_xObsType(self.xObs)
+    def factory(*args_, **kwargs_):
+        if CurrentSubclassModule_ is not None:
+            subclass = getSubclassFromModule_(
+                CurrentSubclassModule_, TRetConsStatServ)
+            if subclass is not None:
+                return subclass(*args_, **kwargs_)
+        if TRetConsStatServ.subclass:
+            return TRetConsStatServ.subclass(*args_, **kwargs_)
+        else:
+            return TRetConsStatServ(*args_, **kwargs_)
+    factory = staticmethod(factory)
+    def get_tpAmb(self): return self.tpAmb
+    def set_tpAmb(self, tpAmb): self.tpAmb = tpAmb
+    def get_verAplic(self): return self.verAplic
+    def set_verAplic(self, verAplic): self.verAplic = verAplic
+    def get_cStat(self): return self.cStat
+    def set_cStat(self, cStat): self.cStat = cStat
+    def get_xMotivo(self): return self.xMotivo
+    def set_xMotivo(self, xMotivo): self.xMotivo = xMotivo
+    def get_cUF(self): return self.cUF
+    def set_cUF(self, cUF): self.cUF = cUF
+    def get_dhRecbto(self): return self.dhRecbto
+    def set_dhRecbto(self, dhRecbto): self.dhRecbto = dhRecbto
+    def get_tMed(self): return self.tMed
+    def set_tMed(self, tMed): self.tMed = tMed
+    def get_dhRetorno(self): return self.dhRetorno
+    def set_dhRetorno(self, dhRetorno): self.dhRetorno = dhRetorno
+    def get_xObs(self): return self.xObs
+    def set_xObs(self, xObs): self.xObs = xObs
+    def get_versao(self): return self.versao
+    def set_versao(self, versao): self.versao = versao
+    def validate_TAmb(self, value):
+        # Validate type TAmb, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['1', '2']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TAmb' % {"value" : value.encode("utf-8")} )
+    def validate_verAplicType(self, value):
+        # Validate type verAplicType, a restriction on TVerAplic.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 20:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on verAplicType' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on verAplicType' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_verAplicType_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_verAplicType_patterns_, ))
+    validate_verAplicType_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TStat(self, value):
+        # Validate type TStat, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TStat_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TStat_patterns_, ))
+    validate_TStat_patterns_ = [['^[0-9]{3}$']]
+    def validate_TMotivo(self, value):
+        # Validate type TMotivo, a restriction on TString.
+        if value is not None and Validate_simpletypes_:
+            if len(str(value)) > 255:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on TMotivo' % {"value" : value} )
+            if len(str(value)) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on TMotivo' % {"value" : value} )
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TMotivo_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TMotivo_patterns_, ))
+    validate_TMotivo_patterns_ = [['^[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}$|^[!-ÿ]{1}$']]
+    def validate_TCodUfIBGE(self, value):
+        # Validate type TCodUfIBGE, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            value = str(value)
+            enumerations = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32', '33', '35', '41', '42', '43', '50', '51', '52', '53']
+            enumeration_respectee = False
+            for enum in enumerations:
+                if value == enum:
+                    enumeration_respectee = True
+                    break
+            if not enumeration_respectee:
+                warnings_.warn('Value "%(value)s" does not match xsd enumeration restriction on TCodUfIBGE' % {"value" : value.encode("utf-8")} )
+    def validate_TDateTimeUTC(self, value):
+        # Validate type TDateTimeUTC, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TDateTimeUTC_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TDateTimeUTC_patterns_, ))
+    validate_TDateTimeUTC_patterns_ = [['^(((20(([02468][048])$|^([13579][26]))-02-29))$|^(20[0-9][0-9])-((((0[1-9])$|^(1[0-2]))-((0[1-9])$|^(1\\d)$|^(2[0-8])))$|^((((0[13578])$|^(1[02]))-31)$|^(((0[1,3-9])$|^(1[0-2]))-(29$|^30)))))T(20$|^21$|^22$|^23$|^[0-1]\\d):[0-5]\\d:[0-5]\\d([\\-,\\+](0[0-9]$|^10$|^11):00$|^([\\+](12):00))$']]
+    def validate_tMedType(self, value):
+        # Validate type tMedType, a restriction on xs:integer.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_tMedType_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_tMedType_patterns_, ))
+    validate_tMedType_patterns_ = [['^[0-9]{1,4}$']]
+    def validate_xObsType(self, value):
+        # Validate type xObsType, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if len(value) > 255:
+                warnings_.warn('Value "%(value)s" does not match xsd maxLength restriction on xObsType' % {"value" : value.encode("utf-8")} )
+            if len(value) < 1:
+                warnings_.warn('Value "%(value)s" does not match xsd minLength restriction on xObsType' % {"value" : value.encode("utf-8")} )
+    def validate_TVerConsStat(self, value):
+        # Validate type TVerConsStat, a restriction on xs:string.
+        if value is not None and Validate_simpletypes_:
+            if not self.gds_validate_simple_patterns(
+                    self.validate_TVerConsStat_patterns_, value):
+                warnings_.warn('Value "%s" does not match xsd pattern restrictions: %s' % (value.encode('utf-8'), self.validate_TVerConsStat_patterns_, ))
+    validate_TVerConsStat_patterns_ = [['^3\\.00$']]
+    def hasContent_(self):
+        if (
+            self.tpAmb is not None or
+            self.verAplic is not None or
+            self.cStat is not None or
+            self.xMotivo is not None or
+            self.cUF is not None or
+            self.dhRecbto is not None or
+            self.tMed is not None or
+            self.dhRetorno is not None or
+            self.xObs is not None
+        ):
+            return True
+        else:
+            return False
+    def export(self, outfile, level, namespace_='', name_='TRetConsStatServ', namespacedef_='', pretty_print=True):
+        imported_ns_def_ = GenerateDSNamespaceDefs_.get('TRetConsStatServ')
+        if imported_ns_def_ is not None:
+            namespacedef_ = imported_ns_def_
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.original_tagname_ is not None:
+            name_ = self.original_tagname_
+        showIndent(outfile, level, pretty_print)
+        outfile.write('<%s%s%s' % (namespace_, name_, namespacedef_ and ' ' + namespacedef_ or '', ))
+        already_processed = set()
+        self.exportAttributes(outfile, level, already_processed, namespace_, name_='TRetConsStatServ')
+        if self.hasContent_():
+            outfile.write('>%s' % (eol_, ))
+            self.exportChildren(outfile, level + 1, namespace_='', name_='TRetConsStatServ', pretty_print=pretty_print)
+            showIndent(outfile, level, pretty_print)
+            outfile.write('</%s%s>%s' % (namespace_, name_, eol_))
+        else:
+            outfile.write('/>%s' % (eol_, ))
+    def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='TRetConsStatServ'):
+        if self.versao is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            outfile.write(' versao=%s' % (quote_attrib(self.versao), ))
+    def exportChildren(self, outfile, level, namespace_='', name_='TRetConsStatServ', fromsubclass_=False, pretty_print=True):
+        if pretty_print:
+            eol_ = '\n'
+        else:
+            eol_ = ''
+        if self.tpAmb is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tpAmb>%s</tpAmb>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.tpAmb), input_name='tpAmb')), eol_))
+        if self.verAplic is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<verAplic>%s</verAplic>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.verAplic), input_name='verAplic')), eol_))
+        if self.cStat is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cStat>%s</cStat>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cStat), input_name='cStat')), eol_))
+        if self.xMotivo is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xMotivo>%s</xMotivo>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xMotivo), input_name='xMotivo')), eol_))
+        if self.cUF is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<cUF>%s</cUF>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.cUF), input_name='cUF')), eol_))
+        if self.dhRecbto is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<dhRecbto>%s</dhRecbto>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.dhRecbto), input_name='dhRecbto')), eol_))
+        if self.tMed is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<tMed>%s</tMed>%s' % (self.gds_format_integer(self.tMed, input_name='tMed'), eol_))
+        if self.dhRetorno is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<dhRetorno>%s</dhRetorno>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.dhRetorno), input_name='dhRetorno')), eol_))
+        if self.xObs is not None:
+            showIndent(outfile, level, pretty_print)
+            outfile.write('<xObs>%s</xObs>%s' % (self.gds_encode(self.gds_format_string(quote_xml(self.xObs), input_name='xObs')), eol_))
+    def build(self, node):
+        already_processed = set()
+        self.buildAttributes(node, node.attrib, already_processed)
+        for child in node:
+            nodeName_ = Tag_pattern_.match(child.tag).groups()[-1]
+            self.buildChildren(child, node, nodeName_)
+        return self
+    def buildAttributes(self, node, attrs, already_processed):
+        value = find_attr_value_('versao', node)
+        if value is not None and 'versao' not in already_processed:
+            already_processed.add('versao')
+            self.versao = value
+            self.validate_TVerConsStat(self.versao)    # validate type TVerConsStat
+    def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
+        if nodeName_ == 'tpAmb':
+            tpAmb_ = child_.text
+            tpAmb_ = self.gds_validate_string(tpAmb_, node, 'tpAmb')
+            self.tpAmb = tpAmb_
+            # validate type TAmb
+            self.validate_TAmb(self.tpAmb)
+        elif nodeName_ == 'verAplic':
+            verAplic_ = child_.text
+            verAplic_ = self.gds_validate_string(verAplic_, node, 'verAplic')
+            self.verAplic = verAplic_
+            # validate type verAplicType
+            self.validate_verAplicType(self.verAplic)
+        elif nodeName_ == 'cStat':
+            cStat_ = child_.text
+            cStat_ = self.gds_validate_string(cStat_, node, 'cStat')
+            self.cStat = cStat_
+            # validate type TStat
+            self.validate_TStat(self.cStat)
+        elif nodeName_ == 'xMotivo':
+            xMotivo_ = child_.text
+            xMotivo_ = self.gds_validate_string(xMotivo_, node, 'xMotivo')
+            self.xMotivo = xMotivo_
+            # validate type TMotivo
+            self.validate_TMotivo(self.xMotivo)
+        elif nodeName_ == 'cUF':
+            cUF_ = child_.text
+            cUF_ = self.gds_validate_string(cUF_, node, 'cUF')
+            self.cUF = cUF_
+            # validate type TCodUfIBGE
+            self.validate_TCodUfIBGE(self.cUF)
+        elif nodeName_ == 'dhRecbto':
+            dhRecbto_ = child_.text
+            dhRecbto_ = self.gds_validate_string(dhRecbto_, node, 'dhRecbto')
+            self.dhRecbto = dhRecbto_
+            # validate type TDateTimeUTC
+            self.validate_TDateTimeUTC(self.dhRecbto)
+        elif nodeName_ == 'tMed':
+            sval_ = child_.text
+            try:
+                ival_ = int(sval_)
+            except (TypeError, ValueError) as exp:
+                raise_parse_error(child_, 'requires integer: %s' % exp)
+            ival_ = self.gds_validate_integer(ival_, node, 'tMed')
+            self.tMed = ival_
+            # validate type tMedType
+            self.validate_tMedType(self.tMed)
+        elif nodeName_ == 'dhRetorno':
+            dhRetorno_ = child_.text
+            dhRetorno_ = self.gds_validate_string(dhRetorno_, node, 'dhRetorno')
+            self.dhRetorno = dhRetorno_
+            # validate type TDateTimeUTC
+            self.validate_TDateTimeUTC(self.dhRetorno)
+        elif nodeName_ == 'xObs':
+            xObs_ = child_.text
+            xObs_ = self.gds_validate_string(xObs_, node, 'xObs')
+            self.xObs = xObs_
+            # validate type xObsType
+            self.validate_xObsType(self.xObs)
+# end class TRetConsStatServ
+
+
 GDSClassesMapping = {
+    'consStatServMDFe': TConsStatServ,
 }
 
 
@@ -732,8 +1149,8 @@ def parse(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'xs_string'
-        rootClass = xs_string
+        rootTag = 'TConsStatServ'
+        rootClass = TConsStatServ
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -753,8 +1170,8 @@ def parseEtree(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'xs_string'
-        rootClass = xs_string
+        rootTag = 'TConsStatServ'
+        rootClass = TConsStatServ
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -781,8 +1198,8 @@ def parseString(inString, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'xs_string'
-        rootClass = xs_string
+        rootTag = 'TConsStatServ'
+        rootClass = TConsStatServ
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -801,8 +1218,8 @@ def parseLiteral(inFileName, silence=False):
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)
     if rootClass is None:
-        rootTag = 'xs_string'
-        rootClass = xs_string
+        rootTag = 'TConsStatServ'
+        rootClass = TConsStatServ
     rootObj = rootClass.factory()
     rootObj.build(rootNode)
     # Enable Python to collect the space used by the DOM.
@@ -830,5 +1247,6 @@ if __name__ == '__main__':
 
 
 __all__ = [
-    
+    "TConsStatServ",
+    "TRetConsStatServ"
 ]
